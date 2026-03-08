@@ -156,27 +156,52 @@ document.addEventListener("DOMContentLoaded", () => {
       video.setAttribute("autoplay", "");
       video.setAttribute("muted", "");
       video.setAttribute("playsinline", "");
+      video.playsInline = true;
+      video.preload = "auto";
+      const sourceEl = video.querySelector("source");
+      if (sourceEl) {
+        video.load();
+      }
 
       // Check for loading errors
       video.addEventListener("error", (e) => {
         console.error(`Video error for ${video.querySelector("source")?.src}:`, video.error);
       });
 
-      // Try playing
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          console.log(`Playing video: ${video.currentSrc}`);
-        }).catch((err) => {
-          console.warn(`Autoplay failed for ${video.currentSrc}:`, err);
-          // Retry on first user interaction if needed
-          const retryPlay = () => {
-            video.play();
-            window.removeEventListener("click", retryPlay);
-          };
-          window.addEventListener("click", retryPlay);
-        });
-      }
+      const tryPlay = () => {
+        const p = video.play();
+        if (p && typeof p.then === "function") {
+          p.then(() => {
+            console.log(`Playing video: ${video.currentSrc}`);
+          }).catch((err) => {
+            console.warn(`Autoplay failed for ${video.currentSrc}:`, err);
+          });
+        }
+      };
+
+      const userRetry = () => {
+        tryPlay();
+        window.removeEventListener("click", userRetry);
+        window.removeEventListener("touchstart", userRetry);
+        window.removeEventListener("keydown", userRetry);
+      };
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              tryPlay();
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      io.observe(video);
+
+      tryPlay();
+      window.addEventListener("click", userRetry);
+      window.addEventListener("touchstart", userRetry, { passive: true });
+      window.addEventListener("keydown", userRetry);
     }
   });
 });
