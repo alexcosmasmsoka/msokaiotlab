@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Msoka IoT Lab — smart IoT systems, 3D designs, and practical technology solutions." />
+    <meta name="theme-color" content="#070814" />
+    <title>Msoka IoT Lab — IoT Prototyping, Automation & 3D Design</title>
+
+    <meta property="og:title" content="Msoka IoT Lab" />
+    <meta property="og:description" content="IoT Prototyping • Smart Device Automation • Custom 3D Hardware Design" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./images/logo%20500%20%C3%97%20500%20px.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Msoka IoT Lab" />
+    <meta name="twitter:description" content="IoT Prototyping • Smart Device Automation • Custom 3D Hardware Design" />
+    <meta name="twitter:image" content="./images/logo%20500%20%C3%97%20500%20px.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" href="./assets/favicon-logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./images/logo%20500%20%C3%97%20500%20px.png" />
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+    <div class="hud-cursor" data-cursor>
+        <div class="hud-cursor-inner"></div>
+        <div class="hud-cursor-ornament"></div>
+    </div>
+    <div class="scroll-progress" data-scroll-progress></div>
+    <a class="skip-link" href="#home">Skip to content</a>
+    <div class="tech-bg" aria-hidden="true">
+        <div class="tech-grid"></div>
+        <div class="tech-circuits"></div>
+        <div class="tech-scan"></div>
+        <div class="tech-orb tech-orb-a"></div>
+        <div class="tech-orb tech-orb-b"></div>
+    </div>
+
+    <header class="site-header" data-header>
+        <nav class="nav container" aria-label="Primary">
+            <a class="brand" href="#home" aria-label="Msoka Iot Lab home">
+                <img class="brand-logo" src="./images/logo%20500%20%C3%97%20500%20px.png" alt="" aria-hidden="true" />
+                <span class="brand-text">Msoka <span>IoT</span> Lab</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="nav-menu" data-nav-toggle>
+                <span class="nav-toggle-lines" aria-hidden="true"></span>
+            </button>
+
+            <div class="nav-menu" id="nav-menu" data-nav-menu>
+                <a class="nav-link is-active" href="#home">Home</a>
+                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#design">3D Design</a>
+                <a class="nav-link" href="#iot-projects">IoT Projects</a>
+                <a class="nav-link" href="#updates">Updates</a>
+                <a class="nav-link" href="#featured">Featured</a>
+                <a class="nav-link" href="#contact">Contact</a>
+                <a class="nav-cta" href="#contact">Collaborate</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home" aria-label="Home">
+            <div class="hero-bg" aria-hidden="true">
+                <iframe class="hero-vimeo" title="Hero background animation" loading="lazy"
+                    allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="no-referrer" aria-hidden="true"
+                    src="https://player.vimeo.com/video/1068978956?background=1&autoplay=1&muted=1&loop=1&controls=0&dnt=1"></iframe>
+                <div class="grid"></div>
+                <div class="glow glow-a"></div>
+                <div class="glow glow-b"></div>
+            </div>
+
+            <div class="container hero-inner">
+                <div class="hero-copy">
+                    <p class="kicker reveal">Personal Technology Lab</p>
+                    <h1 class="headline reveal">
+                        Welcome to <span class="neon">Msoka IoT Lab</span>
+                        <span class="subtle">Building Smart IoT Systems, Creative 3D Designs, and Practical Technology
+                            Solutions</span>
+                    </h1>
+                    <p class="hero-tagline reveal">IoT Prototyping • Smart Device Automation • Custom 3D Hardware Design
+                    </p>
+                    <div class="hero-desc reveal">
+                        <p class="lede">
+                            Msoka IoT Lab is a personal technology laboratory where innovative ideas are transformed
+                            into real working systems. The lab focuses on developing Internet of Things projects,
+                            automation systems, and creative technology solutions that solve everyday problems.
+                        </p>
+                        <details class="hero-more">
+                            <summary>Read more</summary>
+                            <p class="lede">
+                                Here you will find smart devices, automation projects, and experimental technology
+                                systems
+                                designed to demonstrate how hardware and software can work together to create
+                                intelligent
+                                environments.
+                            </p>
+                            <p class="lede">
+                                From smart irrigation systems that manage water automatically to decorative smart lamps
+                                controlled digitally, the goal of this lab is to explore technology, build practical
+                                solutions, and inspire innovation.
+                            </p>
+                        </details>
+                    </div>
+                    <div class="hero-actions reveal">
+                        <a class="btn primary" href="#iot-projects">View Projects</a>
+                        <a class="btn ghost" href="#about">Explore the Lab</a>
+                    </div>
+                    <div class="hero-metrics reveal" role="list">
+                        <div class="metric" role="listitem">
+                            <span class="metric-value">IoT</span>
+                            <span class="metric-label">Smart Systems</span>
+                        </div>
+                        <div class="metric" role="listitem">
+                            <span class="metric-value">Automation</span>
+                            <span class="metric-label">Sensors + Control</span>
+                        </div>
+                        <div class="metric" role="listitem">
+                            <span class="metric-value">3D Design</span>
+                            <span class="metric-label">Custom Builds</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-panel reveal" aria-label="Profile photo area">
+                    <div class="profile-card">
+                        <div class="profile-media">
+                            <picture>
+                                <source type="image/webp"
+                                    srcset="./images/alex-cosmas-msoka-640.webp 640w, ./images/alex-cosmas-msoka-1100.webp 1100w"
+                                    sizes="(max-width: 980px) 92vw, 420px" />
+                                <img class="profile-img" src="./images/alex-cosmas-msoka.jpg"
+                                    alt="Alex Cosmas Msoka — IoT Developer" loading="eager" decoding="async" />
+                            </picture>
+                        </div>
+                        <div class="profile-meta">
+                            <span class="profile-name">Alex Cosmas Msoka</span>
+                            <span class="profile-role">IoT Developer | 3D Designer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="about" aria-label="About Msoka IoT Lab">
+            <div class="section-bg" aria-hidden="true">
+                <video class="section-video" autoplay muted playsinline loop preload="metadata">
+                    <source src="videos/about-section-to-3d-design-section.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>ABOUT MSOKA IOT LAB</h2>
+                    <p>What is Msoka IoT Lab</p>
+                </div>
+
+                <div class="content-card reveal">
+                    <p>
+                        Msoka IoT Lab is a space dedicated to experimenting with modern technologies such as Internet of
+                        Things systems, automation, embedded electronics, and creative 3D design.
+                    </p>
+                    <p>
+                        The lab combines hardware development and software engineering to build intelligent systems that
+                        can sense, respond, and automate tasks in the real world.
+                    </p>
+                    <p>
+                        Projects developed in this lab focus on areas such as smart home technology, environmental
+                        monitoring, automation systems, and creative tech devices designed for both functionality and
+                        aesthetics.
+                    </p>
+                    <p>
+                        Through continuous learning and experimentation, the lab demonstrates how technology can be used
+                        to create smart solutions that improve efficiency, convenience, and innovation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="design" aria-label="3D Design">
+            <div class="section-bg" aria-hidden="true">
+                <video class="section-video" autoplay muted playsinline loop preload="metadata">
+                    <source src="videos/about-section-to-3d-design-section.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>3D DESIGN SECTION</h2>
+                    <p>Creative 3D Design for Smart Devices</p>
+                </div>
+
+                <div class="split">
+                    <div class="content-card reveal">
+                        <p>
+                            3D design plays an important role in the development of modern technology products. In Msoka
+                            IoT Lab, 3D design is used to create custom enclosures and decorative structures for
+                            electronic systems and IoT devices.
+                        </p>
+                        <p>
+                            For example, smart desk lamps can be designed with unique 3D cases that combine aesthetics
+                            with functionality. These designs allow electronic components such as LEDs, sensors, and
+                            microcontrollers to be safely enclosed while also creating visually appealing products.
+                        </p>
+                        <p>
+                            By using 3D modeling tools, different creative shapes and structures can be designed to
+                            support technology devices while also improving their appearance. This allows technology
+                            projects to become not only functional systems but also decorative products suitable for
+                            desks, rooms, and workspaces.
+                        </p>
+                    </div>
+                    <div class="media-grid reveal" aria-label="3D design images">
+                        <figure class="media">
+                            <div class="media-box">
+                                <picture>
+                                    <source type="image/webp"
+                                        srcset="./images/box-pencil-holder-side-640.webp 640w, ./images/box-pencil-holder-side-1100.webp 1100w"
+                                        sizes="(max-width: 980px) 100vw, 520px" />
+                                    <img class="media-img2" src="./images/box-pencil-holder-side.jpg"
+                                        alt="3D desk box for pens and pencils (side view)" loading="lazy"
+                                        decoding="async" />
+                                </picture>
+                            </div>
+                            <figcaption>3D BOX – Desk pen/pencil holder (Side view)</figcaption>
+                        </figure>
+                        <figure class="media">
+                            <div class="media-box">
+                                <picture>
+                                    <source type="image/webp"
+                                        srcset="./images/box-pencil-holder-top-640.webp 640w, ./images/box-pencil-holder-top-1100.webp 1100w"
+                                        sizes="(max-width: 980px) 100vw, 520px" />
+                                    <img class="media-img" src="./images/box-pencil-holder-top.jpg"
+                                        alt="3D desk box for pens and pencils (top view)" loading="lazy"
+                                        decoding="async" />
+                                </picture>
+                            </div>
+                            <figcaption>3D BOX – Desk pen/pencil holder (Top view)</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="iot-projects" aria-label="IoT Projects">
+            <div class="section-bg" aria-hidden="true">
+                <video class="section-video" autoplay muted playsinline loop preload="metadata">
+                    <source src="videos/Iot%20project%20section-to-quick-project-review.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>IOT PROJECTS SECTION</h2>
+                    <p>IoT Projects and Smart Systems</p>
+                </div>
+
+                <div class="split">
+                    <div class="content-card reveal">
+                        <p>
+                            Msoka IoT Lab focuses on building practical Internet of Things systems that connect physical
+                            devices with software platforms to enable monitoring, automation, and intelligent control.
+                        </p>
+                        <p>
+                            These systems use sensors, microcontrollers, and communication technologies to collect data
+                            from the environment and respond automatically based on programmed conditions.
+                        </p>
+                        <p>
+                            One example is the Smart Irrigation System, which monitors soil moisture levels and
+                            automatically controls water pumps to provide the right amount of water to plants. This type
+                            of system helps improve water efficiency and supports modern farming techniques.
+                        </p>
+                        <p>
+                            Through IoT development, devices can communicate with web platforms where users can monitor
+                            system status, view data, and control devices remotely.
+                        </p>
+                    </div>
+                    <div class="media-grid reveal" aria-label="IoT project images">
+                        <figure class="media">
+                            <div class="media-box">
+                                <picture>
+                                    <source type="image/webp"
+                                        srcset="./images/smart-irrigation-side-640.webp 640w, ./images/smart-irrigation-side-1100.webp 1100w"
+                                        sizes="(max-width: 980px) 100vw, 520px" />
+                                    <img class="media-img" src="./images/smart-irrigation-side.jpg"
+                                        alt="Smart irrigation system (side view)" loading="lazy" decoding="async" />
+                                </picture>
+                            </div>
+                            <figcaption>Smart Irrigation System (Side view)</figcaption>
+                        </figure>
+                        <figure class="media">
+                            <div class="media-box">
+                                <picture>
+                                    <source type="image/webp"
+                                        srcset="./images/smart-irrigation-top-640.webp 640w, ./images/smart-irrigation-top-1100.webp 1100w"
+                                        sizes="(max-width: 980px) 100vw, 520px" />
+                                    <img class="media-img" src="./images/smart-irrigation-top.jpg"
+                                        alt="Smart irrigation system (top view)" loading="lazy" decoding="async" />
+                                </picture>
+                            </div>
+                            <figcaption>Smart Irrigation System (Top view)</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="updates" aria-label="Technology and Innovation News">
+            <div class="section-bg" aria-hidden="true">
+                <video class="section-video" autoplay muted playsinline loop preload="metadata">
+                    <source src="videos/Iot%20project%20section-to-quick-project-review.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>TECHNOLOGY AND INNOVATION NEWS</h2>
+                    <p>
+                        Technology and Innovation Updates
+                    </p>
+                </div>
+
+                <div class="content-card reveal">
+                    <p>
+                        Msoka IoT Lab also shares updates about new projects, technology experiments, and innovations in
+                        the fields of IoT development, automation systems, and digital design.
+                    </p>
+                    <p>
+                        This section highlights progress in ongoing projects, new device prototypes, and insights gained
+                        while experimenting with emerging technologies.
+                    </p>
+                    <p>
+                        Visitors can explore project updates, development processes, and new ideas that are being tested
+                        in the lab.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="featured" aria-label="Quick Project Preview">
+            <div class="section-bg" aria-hidden="true">
+                <video class="section-video" autoplay muted playsinline loop preload="metadata">
+                    <source src="videos/Iot%20project%20section-to-quick-project-review.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>QUICK PROJECT PREVIEW</h2>
+                    <p>
+                        Featured Projects
+                    </p>
+                </div>
+
+                <div class="cards">
+                    <article class="card reveal">
+                        <div class="card-icon" aria-hidden="true">01</div>
+                        <h3>Smart Gate System</h3>
+                        <p>
+                            An automated gate system designed to detect vehicles and control gate access using smart
+                            sensors and camera-based recognition.
+                        </p>
+                        <div class="tags" aria-label="Tech stack tags">
+                            <span>Sensors</span><span>Automation</span><span>Computer Vision</span>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn ghost" href="#featured">View details</a>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="card-icon" aria-hidden="true">02</div>
+                        <h3>Smart Lamp System</h3>
+                        <p>
+                            A decorative smart desk lamp capable of changing colors and brightness levels while
+                            combining IoT functionality with custom 3D design.
+                        </p>
+                        <div class="tags" aria-label="Tech stack tags">
+                            <span>LED</span><span>IoT Control</span><span>3D Enclosure</span>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn ghost" href="#design">View details</a>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="card-icon" aria-hidden="true">03</div>
+                        <h3>Smart Irrigation System</h3>
+                        <p>
+                            An automated watering system that monitors soil conditions and intelligently controls water
+                            flow to support efficient farming.
+                        </p>
+                        <div class="tags" aria-label="Tech stack tags">
+                            <span>Sensors</span><span>Pumps</span><span>Telemetry</span>
+                        </div>
+                        <div class="thumbs" aria-label="Smart irrigation gallery">
+                            <picture>
+                                <source type="image/webp"
+                                    srcset="./images/smart-irrigation-side-640.webp 640w, ./images/smart-irrigation-side-1100.webp 1100w"
+                                    sizes="220px" />
+                                <img class="thumb-img" src="./images/smart-irrigation-side.jpg"
+                                    alt="Smart irrigation system (side view)" loading="lazy" decoding="async" />
+                            </picture>
+                            <picture>
+                                <source type="image/webp"
+                                    srcset="./images/smart-irrigation-top-640.webp 640w, ./images/smart-irrigation-top-1100.webp 1100w"
+                                    sizes="220px" />
+                                <img class="thumb-img" src="./images/smart-irrigation-top.jpg"
+                                    alt="Smart irrigation system (top view)" loading="lazy" decoding="async" />
+                            </picture>
+                        </div>
+                        <div class="card-actions">
+                            <a class="btn ghost" href="#iot-projects">View details</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact" aria-label="Contact">
+            <div class="section-bg" aria-hidden="true">
+                <video class="section-video" autoplay muted playsinline loop preload="metadata">
+                    <source src="videos/contant-section-to-end-of-website.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>Contact</h2>
+                    <p>Have an idea or need a prototype? Send a message.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <form class="contact-form reveal" autocomplete="on">
+                        <label class="field">
+                            <span>Name</span>
+                            <input name="name" type="text" placeholder="Your name" required />
+                        </label>
+                        <label class="field">
+                            <span>Email</span>
+                            <input name="email" type="email" placeholder="you@domain.com" required />
+                        </label>
+                        <label class="field">
+                            <span>Message</span>
+                            <textarea name="message" rows="5" placeholder="Tell me what you're building..."
+                                required></textarea>
+                        </label>
+                        <button class="btn primary" type="submit">
+                            Send Message
+                        </button>
+                        <p class="form-note" role="status" aria-live="polite" data-form-note></p>
+                    </form>
+
+                    <div class="contact-panel reveal">
+                        <div class="contact-item">
+                            <span class="contact-label">Focus</span>
+                            <span class="contact-value">IoT · Automation · 3D Design</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Availability</span>
+                            <span class="contact-value">Collaborations & prototypes</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Location</span>
+                            <span class="contact-value">Remote / Hybrid</span>
+                        </div>
+                        <div class="divider" aria-hidden="true"></div>
+                        <div class="social">
+                            <a href="mailto:alexcosmasmsoka@gmail.com">
+                                <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill="currentColor"
+                                        d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.2-8 4.8-8-4.8V6l8 4.8L20 6v2.2Z" />
+                                </svg>
+                                alexcosmasmsoka@gmail.com
+                            </a>
+                            <a href="https://ig.me/m/alexcosmasmsoka" target="_blank" rel="noreferrer">
+                                <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill="currentColor"
+                                        d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.5-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z" />
+                                </svg>
+                                Instagram
+                            </a>
+                            <a href="https://wa.me/255619215321" target="_blank" rel="noreferrer">
+                                <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 0 16c-1.3 0-2.5-.3-3.6-.8l-.5-.2-3 .8.8-2.9-.3-.6A8 8 0 0 1 12 4Zm-3 3.5c-.3 0-.6.1-.8.3-.5.5-1 1.2-1 2.1 0 1.1.5 2.2 1.2 3.2 1.2 1.7 2.9 3 4.9 3.8.8.3 1.6.5 2.2.4.7-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3l-1.5-.7c-.2-.1-.4-.1-.6.1l-.7.9c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2.1-1.2-.8-.6-1.4-1.4-1.5-1.7-.1-.2 0-.4.1-.5l.5-.6c.1-.1.2-.3.3-.5.1-.2.1-.4 0-.6L10 7.9c-.1-.3-.3-.4-.6-.4H9Z" />
+                                </svg>
+                                WhatsApp
+                            </a>
+                            <a href="https://www.tiktok.com/@msokaalex" target="_blank" rel="noreferrer">
+                                <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill="currentColor"
+                                        d="M14 3v10.2a3.7 3.7 0 1 1-3-3.6V6.2A7.7 7.7 0 1 0 16 13V8.5c1.3 1 2.9 1.6 4.6 1.6V7.4c-2 0-3.8-1.3-4.3-3.1H14Z" />
+                                </svg>
+                                TikTok
+                            </a>
+                            <a href="https://m.me/alexcosmasmsoka" target="_blank" rel="noreferrer">
+                                <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill="currentColor"
+                                        d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.3-1.6 1.7-1.6h1.5V4.8c-.3 0-1.4-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V11H7v3h2.5v8h4Z" />
+                                </svg>
+                                Facebook
+                            </a>
+                        </div>
+                        <a class="contact-link" href="#featured">View work →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <img class="footer-logo" src="./images/logo%20500%20%C3%97%20500%20px.png" alt="" aria-hidden="true" />
+                <span class="brand-text">Msoka <span>IoT</span> Lab</span>
+                <p>Modern connected systems with neon-future aesthetics.</p>
+            </div>
+            <div class="footer-links" aria-label="Footer">
+                <a href="#about">About</a>
+                <a href="#design">3D Design</a>
+                <a href="#iot-projects">IoT Projects</a>
+                <a href="#featured">Featured</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-meta">
+                <span>© <span data-year></span> Msoka Iot Lab</span>
+                <span class="sep" aria-hidden="true">·</span>
+                <span>Crafted for the connected world</span>
+            </div>
+        </div>
+    </footer>
+
+    <a class="back-to-top" href="#home" aria-label="Back to top" data-back-to-top>Back to top</a>
+    <script src="./script.js"></script>
+</body>
+
+</html>
