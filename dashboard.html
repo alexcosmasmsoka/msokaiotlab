@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Dashboard — Msoka IoT Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+        .dashboard {
+            padding-top: calc(var(--header-h) + 2rem);
+            min-height: 100dvh;
+        }
+
+        .dash-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 980px) {
+            .dash-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .dash-nav {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            position: sticky;
+            top: calc(var(--header-h) + 2rem);
+        }
+
+        .dash-nav h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dash-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .dash-menu-item {
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-sm);
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .dash-menu-item:hover {
+            background: var(--panel-2);
+            color: var(--neon-a);
+        }
+
+        .dash-menu-item.active {
+            background: rgba(89, 212, 255, 0.1);
+            color: var(--neon-a);
+            border: 1px solid rgba(89, 212, 255, 0.2);
+        }
+
+        .dash-content {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+        }
+
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .dash-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--panel-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--neon-a);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+    <div class="hud-cursor" data-cursor>
+        <div class="hud-cursor-inner"></div>
+        <div class="hud-cursor-ornament"></div>
+    </div>
+    
+    <div class="tech-bg" aria-hidden="true">
+        <div class="tech-grid"></div>
+        <div class="tech-circuits"></div>
+        <div class="tech-scan"></div>
+        <div class="tech-orb tech-orb-a"></div>
+        <div class="tech-orb tech-orb-b"></div>
+    </div>
+
+    <header class="site-header" data-header>
+        <nav class="nav container">
+            <a class="brand" href="index.html">
+                <img class="brand-logo" src="./images/logo%20500%20%C3%97%20500%20px.png" alt="" />
+                <span class="brand-text">Msoka <span>IoT</span> Lab</span>
+            </a>
+            <div class="user-info">
+                <span id="user-email">Loading session...</span>
+                <button class="btn ghost" id="logout-btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="dashboard container">
+        <div class="dash-grid">
+            <aside class="dash-nav">
+                <h2>LAB CONTROL</h2>
+                <div class="dash-menu">
+                    <button class="dash-menu-item active">Overview</button>
+                    <button class="dash-menu-item">IoT Devices</button>
+                    <button class="dash-menu-item">3D Projects</button>
+                    <button class="dash-menu-item">Messages</button>
+                    <button class="dash-menu-item">Settings</button>
+                </div>
+            </aside>
+
+            <section class="dash-content">
+                <div class="dash-header">
+                    <h1>SYSTEM OVERVIEW</h1>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-label">Active Devices</span>
+                        <span class="stat-value">12</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Storage Usage</span>
+                        <span class="stat-value">4.2 GB</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">New Messages</span>
+                        <span class="stat-value">5</span>
+                    </div>
+                </div>
+
+                <div class="content-placeholder">
+                    <p style="color: var(--muted); line-height: 1.6;">
+                        Welcome to the Msoka IoT Lab administration panel. From here, you can manage your IoT infrastructure, monitor system health, and respond to collaboration inquiries. 
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="./script.js"></script>
+    <script type="module" src="./dashboard.js"></script>
+</body>
+
+</html>

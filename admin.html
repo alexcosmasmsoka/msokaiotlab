@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Admin Login — Msoka IoT Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+        .login-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100dvh;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-card {
+            background: var(--panel);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 3rem;
+            width: 100%;
+            max-width: 440px;
+            box-shadow: var(--shadow);
+            animation: card-entry 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes card-entry {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-head {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .login-head h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: var(--neon-a);
+        }
+
+        .login-head p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .error-msg {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            padding: 0.75rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .login-form .field {
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .login-form input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            padding: 0.85rem 1rem;
+            border-radius: var(--radius-sm);
+            color: var(--text);
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--neon-a);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 15px rgba(89, 212, 255, 0.2);
+        }
+
+        .login-form .btn {
+            width: 100%;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+    <div class="hud-cursor" data-cursor>
+        <div class="hud-cursor-inner"></div>
+        <div class="hud-cursor-ornament"></div>
+    </div>
+    
+    <div class="tech-bg" aria-hidden="true">
+        <div class="tech-grid"></div>
+        <div class="tech-circuits"></div>
+        <div class="tech-scan"></div>
+        <div class="tech-orb tech-orb-a"></div>
+        <div class="tech-orb tech-orb-b"></div>
+    </div>
+
+    <main class="login-page">
+        <div class="login-card">
+            <header class="login-head">
+                <h1>SECURE ACCESS</h1>
+                <p>Msoka IoT Lab Admin Control</p>
+            </header>
+
+            <div id="error-msg" class="error-msg"></div>
+
+            <form id="login-form" class="login-form">
+                <label class="field">
+                    <span>Email Address</span>
+                    <input type="email" id="email" required placeholder="admin@msokaiotlab.com" autocomplete="email" />
+                </label>
+                <label class="field">
+                    <span>Security Key</span>
+                    <input type="password" id="password" required placeholder="••••••••" autocomplete="current-password" />
+                </label>
+                <button type="submit" class="btn primary" id="login-btn">
+                    <span>Initialize Access</span>
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script src="./script.js"></script>
+    <script type="module" src="./admin.js"></script>
+</body>
+
+</html>
