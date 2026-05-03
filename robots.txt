@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://msokaiotlab.vercel.app/sitemap.xml
