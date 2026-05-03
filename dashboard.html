@@ -138,6 +138,165 @@
             color: var(--neon-a);
         }
 
+        /* Project Management Styles */
+        .project-form-card {
+            background: var(--panel-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-form-card h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-a);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            padding: 0.75rem;
+            border-radius: var(--radius-sm);
+            color: var(--text);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--neon-a);
+        }
+
+        .projects-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .project-item {
+            background: var(--panel-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .project-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .project-thumb {
+                margin: 0 auto;
+            }
+        }
+
+        .project-thumb {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: var(--bg-2);
+        }
+
+        .project-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .status-published {
+            background: rgba(34, 197, 94, 0.1);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .status-draft {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+
+        .btn-icon {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            border-color: var(--neon-a);
+            color: var(--neon-a);
+            background: rgba(89, 212, 255, 0.05);
+        }
+
+        .btn-icon.delete:hover {
+            border-color: #ef4444;
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.05);
+        }
+
         /* Auth Protection */
         body.loading-auth header,
         body.loading-auth main {
@@ -229,25 +388,54 @@
                     <h1>SYSTEM OVERVIEW</h1>
                 </div>
 
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-label">Active Devices</span>
-                        <span class="stat-value">12</span>
+                <div class="project-management">
+                    <div class="project-form-card">
+                        <h2>ADD NEW PROJECT</h2>
+                        <form id="project-form" class="form-grid">
+                            <input type="hidden" id="project-id">
+                            <div class="form-group">
+                                <label for="proj-name">Project Name</label>
+                                <input type="text" id="proj-name" placeholder="e.g., Smart Irrigation" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="proj-image">Image URL</label>
+                                <input type="url" id="proj-image" placeholder="https://..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="proj-video">Video URL (Optional)</label>
+                                <input type="url" id="proj-video" placeholder="https://...">
+                            </div>
+                            <div class="form-group">
+                                <label for="proj-status">Status</label>
+                                <select id="proj-status"
+                                    style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); padding: 0.75rem; border-radius: var(--radius-sm); color: var(--text); font-family: inherit;">
+                                    <option value="draft">Draft</option>
+                                    <option value="published">Published</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="proj-desc">Description</label>
+                                <textarea id="proj-desc" rows="3" placeholder="Describe the project..."
+                                    required></textarea>
+                            </div>
+                            <div class="form-group full-width">
+                                <button type="submit" class="btn primary" id="save-project-btn">Save Project</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="stat-card">
-                        <span class="stat-label">Storage Usage</span>
-                        <span class="stat-value">4.2 GB</span>
+
+                    <div class="dash-header">
+                        <h2>PROJECTS LIST</h2>
                     </div>
-                    <div class="stat-card">
-                        <span class="stat-label">New Messages</span>
-                        <span class="stat-value">5</span>
+                    <div id="projects-container" class="projects-list">
+                        <!-- Projects will be injected here -->
+                        <p style="color: var(--muted);">Fetching projects...</p>
                     </div>
                 </div>
 
-                <div class="content-placeholder">
+                <div class="content-placeholder" style="margin-top: 3rem;">
                     <p style="color: var(--muted); line-height: 1.6;">
-                        Welcome to the Msoka IoT Lab administration panel. From here, you can manage your IoT
-                        infrastructure, monitor system health, and respond to collaboration inquiries.
+                        Manage your IoT infrastructure, monitor system health, and respond to collaboration inquiries.
                     </p>
                 </div>
             </section>
