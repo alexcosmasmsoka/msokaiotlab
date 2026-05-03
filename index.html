@@ -33,42 +33,56 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Msoka IoT Lab",
-      "image": "https://msokaiotlab.vercel.app/images/logo%20500%20%C3%97%20500%20px.png",
-      "@id": "https://msokaiotlab.vercel.app/",
-      "url": "https://msokaiotlab.vercel.app/",
-      "telephone": "+255619215321",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Remote / Hybrid",
-        "addressCountry": "TZ"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -6.7924,
-        "longitude": 39.2083
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "00:00",
-        "closes": "23:59"
-      },
-      "sameAs": [
-        "https://www.instagram.com/alexcosmasmsoka",
-        "https://www.tiktok.com/@msokaalex",
-        "https://wa.me/255619215321"
-      ],
-      "description": "Msoka IoT Lab focuses on developing smart IoT systems, automation, embedded electronics, and creative 3D design solutions."
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://msokaiotlab.vercel.app/#person",
+          "name": "Alex Cosmas Msoka",
+          "url": "https://msokaiotlab.vercel.app/",
+          "image": "https://msokaiotlab.vercel.app/images/alex-cosmas-msoka.jpg",
+          "jobTitle": "IoT Developer & 3D Designer",
+          "sameAs": [
+            "https://www.instagram.com/alexcosmasmsoka",
+            "https://www.tiktok.com/@msokaalex",
+            "https://wa.me/255619215321"
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://msokaiotlab.vercel.app/#service",
+          "name": "Msoka IoT Lab",
+          "founder": { "@id": "https://msokaiotlab.vercel.app/#person" },
+          "owner": { "@id": "https://msokaiotlab.vercel.app/#person" },
+          "image": "https://msokaiotlab.vercel.app/images/logo%20500%20%C3%97%20500%20px.png",
+          "url": "https://msokaiotlab.vercel.app/",
+          "telephone": "+255619215321",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Remote / Hybrid",
+            "addressCountry": "TZ"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -6.7924,
+            "longitude": 39.2083
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+          },
+          "description": "Msoka IoT Lab focuses on developing smart IoT systems, automation, embedded electronics, and creative 3D design solutions."
+        }
+      ]
     }
     </script>
 </head>
