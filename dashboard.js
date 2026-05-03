@@ -8,13 +8,16 @@ async function protectPage() {
     const { data: { session }, error } = await supabase.auth.getSession();
     
     if (error || !session) {
-        // Not logged in, redirect to login page
-        window.location.href = 'admin.html';
+        // Not logged in, redirect to login page immediately
+        window.location.replace('admin.html');
         return;
     }
 
     // Set user email in header
     userEmailSpan.textContent = session.user.email;
+    
+    // Reveal the dashboard
+    document.body.classList.remove('loading-auth');
 }
 
 protectPage();

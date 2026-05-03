@@ -137,16 +137,58 @@
             font-size: 1.5rem;
             color: var(--neon-a);
         }
+
+        /* Auth Protection */
+        body.loading-auth header,
+        body.loading-auth main {
+            display: none;
+        }
+
+        .auth-loader {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            z-index: 10001;
+        }
+
+        body.loading-auth .auth-loader {
+            display: flex;
+        }
+
+        .loader-text {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-a);
+            letter-spacing: 0.2em;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+        }
     </style>
 </head>
 
-<body>
+<body class="loading-auth">
+    <div class="auth-loader">
+        <div class="loader-text">VERIFYING ACCESS...</div>
+    </div>
     <div class="noise-overlay"></div>
     <div class="hud-cursor" data-cursor>
         <div class="hud-cursor-inner"></div>
         <div class="hud-cursor-ornament"></div>
     </div>
-    
+
     <div class="tech-bg" aria-hidden="true">
         <div class="tech-grid"></div>
         <div class="tech-circuits"></div>
@@ -163,7 +205,8 @@
             </a>
             <div class="user-info">
                 <span id="user-email">Loading session...</span>
-                <button class="btn ghost" id="logout-btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Logout</button>
+                <button class="btn ghost" id="logout-btn"
+                    style="padding: 0.5rem 1rem; font-size: 0.8rem;">Logout</button>
             </div>
         </nav>
     </header>
@@ -203,7 +246,8 @@
 
                 <div class="content-placeholder">
                     <p style="color: var(--muted); line-height: 1.6;">
-                        Welcome to the Msoka IoT Lab administration panel. From here, you can manage your IoT infrastructure, monitor system health, and respond to collaboration inquiries. 
+                        Welcome to the Msoka IoT Lab administration panel. From here, you can manage your IoT
+                        infrastructure, monitor system health, and respond to collaboration inquiries.
                     </p>
                 </div>
             </section>
