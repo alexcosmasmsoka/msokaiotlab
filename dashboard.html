@@ -11,331 +11,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;500;600&display=swap"
         rel="stylesheet" />
+    <!-- All dashboard styles live in style.css under the "Dashboard" section -->
     <link rel="stylesheet" href="./style.css" />
-    <style>
-        .dashboard {
-            padding-top: calc(var(--header-h) + 2rem);
-            min-height: 100dvh;
-        }
-
-        .dash-grid {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2rem;
-            align-items: start;
-        }
-
-        @media (max-width: 980px) {
-            .dash-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .dash-nav {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            position: sticky;
-            top: calc(var(--header-h) + 2rem);
-        }
-
-        .dash-nav h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            color: var(--muted);
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .dash-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .dash-menu-item {
-            padding: 0.75rem 1rem;
-            border-radius: var(--radius-sm);
-            color: var(--text);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: transparent;
-            border: none;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        .dash-menu-item:hover {
-            background: var(--panel-2);
-            color: var(--neon-a);
-        }
-
-        .dash-menu-item.active {
-            background: rgba(89, 212, 255, 0.1);
-            color: var(--neon-a);
-            border: 1px solid rgba(89, 212, 255, 0.2);
-        }
-
-        .dash-content {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2rem;
-        }
-
-        .dash-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .dash-header h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .stat-card {
-            background: var(--panel-2);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 1.5rem;
-        }
-
-        .stat-label {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-value {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--neon-a);
-        }
-
-        /* Project Management Styles */
-        .project-form-card {
-            background: var(--panel-2);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .project-form-card h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: var(--neon-a);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            font-size: 0.85rem;
-            color: var(--muted);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border);
-            padding: 0.75rem;
-            border-radius: var(--radius-sm);
-            color: var(--text);
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--neon-a);
-        }
-
-        .projects-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        .project-item {
-            background: var(--panel-2);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 1.5rem;
-            display: grid;
-            grid-template-columns: 120px 1fr auto;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .project-item {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .project-thumb {
-                margin: 0 auto;
-            }
-        }
-
-        .project-thumb {
-            width: 120px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-            background: var(--bg-2);
-        }
-
-        .project-info h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-info p {
-            font-size: 0.9rem;
-            color: var(--muted);
-            line-height: 1.4;
-        }
-
-        .project-actions {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-        }
-
-        .status-badge {
-            font-size: 0.7rem;
-            padding: 0.25rem 0.6rem;
-            border-radius: 20px;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .status-published {
-            background: rgba(34, 197, 94, 0.1);
-            color: #4ade80;
-            border: 1px solid rgba(34, 197, 94, 0.2);
-        }
-
-        .status-draft {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--muted);
-            border: 1px solid var(--border);
-        }
-
-        .btn-icon {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text);
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-icon:hover {
-            border-color: var(--neon-a);
-            color: var(--neon-a);
-            background: rgba(89, 212, 255, 0.05);
-        }
-
-        .btn-icon.delete:hover {
-            border-color: #ef4444;
-            color: #ef4444;
-            background: rgba(239, 68, 68, 0.05);
-        }
-
-        /* Auth Protection */
-        body.loading-auth header,
-        body.loading-auth main {
-            display: none;
-        }
-
-        .auth-loader {
-            position: fixed;
-            inset: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg);
-            z-index: 10001;
-        }
-
-        body.loading-auth .auth-loader {
-            display: flex;
-        }
-
-        .loader-text {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--neon-a);
-            letter-spacing: 0.2em;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.4;
-            }
-        }
-    </style>
 </head>
 
 <body class="loading-auth">
@@ -357,69 +34,80 @@
     </div>
 
     <header class="site-header" data-header>
-        <nav class="nav container">
-            <a class="brand" href="index.html">
-                <img class="brand-logo" src="./images/logo%20500%20%C3%97%20500%20px.png" alt="" />
+        <nav class="nav container" aria-label="Dashboard navigation">
+            <a class="brand" href="index.html" aria-label="Msoka IoT Lab home">
+                <img class="brand-logo" src="./images/logo%20500%20%C3%97%20500%20px.png" alt="" aria-hidden="true" />
                 <span class="brand-text">Msoka <span>IoT</span> Lab</span>
             </a>
-            <div class="user-info">
-                <span id="user-email">Loading session...</span>
-                <button class="btn ghost" id="logout-btn"
-                    style="padding: 0.5rem 1rem; font-size: 0.8rem;">Logout</button>
+            <div class="user-info" aria-label="Logged-in user">
+                <span id="user-email">Loading session…</span>
+                <button class="btn ghost" id="logout-btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;">
+                    Logout
+                </button>
             </div>
         </nav>
     </header>
 
     <main class="dashboard container">
         <div class="dash-grid">
-            <aside class="dash-nav">
+            <!-- Sidebar nav -->
+            <aside class="dash-nav" aria-label="Dashboard sections">
                 <h2>LAB CONTROL</h2>
-                <div class="dash-menu">
-                    <button class="dash-menu-item active">Overview</button>
-                    <button class="dash-menu-item">IoT Devices</button>
-                    <button class="dash-menu-item">3D Projects</button>
-                    <button class="dash-menu-item">Messages</button>
-                    <button class="dash-menu-item">Settings</button>
+                <div class="dash-menu" role="tablist">
+                    <button class="dash-menu-item active" role="tab" aria-selected="true"
+                        data-panel="panel-projects">📁 Projects</button>
+                    <button class="dash-menu-item" role="tab" aria-selected="false"
+                        data-panel="panel-messages">✉ Messages</button>
                 </div>
             </aside>
 
-            <section class="dash-content">
+            <!-- Main content -->
+            <section class="dash-content" aria-label="Dashboard content">
                 <div class="dash-header">
-                    <h1>SYSTEM OVERVIEW</h1>
+                    <h1 id="dash-title">PROJECTS</h1>
                 </div>
 
-                <div class="project-management">
+                <!-- ── Projects panel ────────────────────────── -->
+                <div id="panel-projects" class="dash-panel">
                     <div class="project-form-card">
-                        <h2>ADD NEW PROJECT</h2>
-                        <form id="project-form" class="form-grid">
-                            <input type="hidden" id="project-id">
+                        <h2>ADD / EDIT PROJECT</h2>
+                        <form id="project-form" class="form-grid" novalidate>
+                            <input type="hidden" id="project-id" />
+
                             <div class="form-group">
                                 <label for="proj-name">Project Name</label>
-                                <input type="text" id="proj-name" placeholder="e.g., Smart Irrigation" required>
+                                <input type="text" id="proj-name" placeholder="e.g., Smart Irrigation" required />
                             </div>
+
                             <div class="form-group">
                                 <label for="proj-image">Image URL</label>
-                                <input type="url" id="proj-image" placeholder="https://..." required>
+                                <input type="url" id="proj-image" placeholder="https://…" required />
                             </div>
+
                             <div class="form-group">
-                                <label for="proj-video">Video URL (Optional)</label>
-                                <input type="url" id="proj-video" placeholder="https://...">
+                                <label for="proj-video">Video URL (optional)</label>
+                                <input type="url" id="proj-video" placeholder="https://…" />
                             </div>
+
                             <div class="form-group">
                                 <label for="proj-status">Status</label>
-                                <select id="proj-status"
-                                    style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); padding: 0.75rem; border-radius: var(--radius-sm); color: var(--text); font-family: inherit;">
+                                <!-- Styled via style.css .dash-select -->
+                                <select id="proj-status" class="dash-select">
                                     <option value="draft">Draft</option>
                                     <option value="published">Published</option>
                                 </select>
                             </div>
+
                             <div class="form-group full-width">
                                 <label for="proj-desc">Description</label>
-                                <textarea id="proj-desc" rows="3" placeholder="Describe the project..."
-                                    required></textarea>
+                                <textarea id="proj-desc" rows="3"
+                                    placeholder="Describe the project…" required></textarea>
                             </div>
+
                             <div class="form-group full-width">
-                                <button type="submit" class="btn primary" id="save-project-btn">Save Project</button>
+                                <button type="submit" class="btn primary" id="save-project-btn">
+                                    Save Project
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -427,23 +115,53 @@
                     <div class="dash-header">
                         <h2>PROJECTS LIST</h2>
                     </div>
-                    <div id="projects-container" class="projects-list">
-                        <!-- Projects will be injected here -->
-                        <p style="color: var(--muted);">Fetching projects...</p>
+                    <div id="projects-container" class="projects-list" aria-live="polite">
+                        <p style="color: var(--muted);">Fetching projects…</p>
                     </div>
                 </div>
 
-                <div class="content-placeholder" style="margin-top: 3rem;">
-                    <p style="color: var(--muted); line-height: 1.6;">
-                        Manage your IoT infrastructure, monitor system health, and respond to collaboration inquiries.
-                    </p>
+                <!-- ── Messages panel ────────────────────────── -->
+                <div id="panel-messages" class="dash-panel" hidden>
+                    <div class="dash-header">
+                        <h2>INBOX</h2>
+                    </div>
+                    <div id="messages-container" class="messages-list" aria-live="polite">
+                        <p style="color: var(--muted);">Loading messages…</p>
+                    </div>
                 </div>
+
             </section>
         </div>
     </main>
 
-    <script src="./script.js"></script>
+    <script type="module" src="./script.js"></script>
     <script type="module" src="./dashboard.js"></script>
+    <script>
+        // Simple tab switcher — runs before module scripts finish
+        document.querySelector('.dash-menu')?.addEventListener('click', (e) => {
+            const btn = e.target.closest('[data-panel]');
+            if (!btn) return;
+
+            const panelId = btn.dataset.panel;
+
+            // Toggle buttons
+            document.querySelectorAll('.dash-menu-item').forEach((b) => {
+                const active = b === btn;
+                b.classList.toggle('active', active);
+                b.setAttribute('aria-selected', String(active));
+            });
+
+            // Toggle panels
+            document.querySelectorAll('.dash-panel').forEach((p) => {
+                p.hidden = p.id !== panelId;
+            });
+
+            // Update heading
+            const titles = { 'panel-projects': 'PROJECTS', 'panel-messages': 'MESSAGES' };
+            const titleEl = document.getElementById('dash-title');
+            if (titleEl) titleEl.textContent = titles[panelId] ?? '';
+        });
+    </script>
 </body>
 
 </html>

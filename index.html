@@ -15,11 +15,11 @@
     <meta property="og:title" content="Msoka IoT Lab" />
     <meta property="og:description" content="IoT Prototyping • Smart Device Automation • Custom 3D Hardware Design" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="./images/logo%20500%20%C3%97%20500%20px.png" />
+    <meta property="og:image" content="https://msokaiotlab.com/images/logo%20500%20%C3%97%20500%20px.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Msoka IoT Lab" />
     <meta name="twitter:description" content="IoT Prototyping • Smart Device Automation • Custom 3D Hardware Design" />
-    <meta name="twitter:image" content="./images/logo%20500%20%C3%97%20500%20px.png" />
+    <meta name="twitter:image" content="https://msokaiotlab.com/images/logo%20500%20%C3%97%20500%20px.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -417,67 +417,12 @@
                     </p>
                 </div>
 
-                <div class="cards">
-                    <article class="card reveal">
-                        <div class="card-icon" aria-hidden="true">01</div>
-                        <h3>Smart Gate System</h3>
-                        <p>
-                            An automated gate system developed at Msoka IoT Lab, designed to detect vehicles and control
-                            access using sensors.
-                        </p>
-                        <div class="tags" aria-label="Tech stack tags">
-                            <span>Sensors</span><span>Automation</span><span>Computer Vision</span>
-                        </div>
-                        <div class="card-actions">
-                            <a class="btn ghost" href="#featured">View details</a>
-                        </div>
-                    </article>
-                    <article class="card reveal">
-                        <div class="card-icon" aria-hidden="true">02</div>
-                        <h3>Smart Lamp System</h3>
-                        <p>
-                            A decorative smart desk lamp by Msoka IoT Lab, combining IoT control with a custom 3D
-                            printed enclosure.
-                        </p>
-                        <div class="tags" aria-label="Tech stack tags">
-                            <span>LED</span><span>IoT Control</span><span>3D Enclosure</span>
-                        </div>
-                        <div class="card-actions">
-                            <a class="btn ghost" href="#design">View details</a>
-                        </div>
-                    </article>
-                    <article class="card reveal">
-                        <div class="card-icon" aria-hidden="true">03</div>
-                        <h3>Smart Irrigation System</h3>
-                        <p>
-                            An automated watering system from Msoka IoT Lab that monitors soil conditions for efficient
-                            farming.
-                        </p>
-                        <div class="tags" aria-label="Tech stack tags">
-                            <span>Sensors</span><span>Pumps</span><span>Telemetry</span>
-                        </div>
-                        <div class="thumbs" aria-label="Msoka IoT Lab smart irrigation gallery">
-                            <picture>
-                                <source type="image/webp"
-                                    srcset="./images/smart-irrigation-side-640.webp 640w, ./images/smart-irrigation-side-1100.webp 1100w"
-                                    sizes="220px" />
-                                <img class="thumb-img" src="./images/smart-irrigation-side.jpg"
-                                    alt="Msoka IoT Lab Smart irrigation system (side view)" loading="lazy"
-                                    decoding="async" />
-                            </picture>
-                            <picture>
-                                <source type="image/webp"
-                                    srcset="./images/smart-irrigation-top-640.webp 640w, ./images/smart-irrigation-top-1100.webp 1100w"
-                                    sizes="220px" />
-                                <img class="thumb-img" src="./images/smart-irrigation-top.jpg"
-                                    alt="Msoka IoT Lab Smart irrigation system (top view)" loading="lazy"
-                                    decoding="async" />
-                            </picture>
-                        </div>
-                        <div class="card-actions">
-                            <a class="btn ghost" href="#iot-projects">View details</a>
-                        </div>
-                    </article>
+                <!-- Project cards are loaded dynamically from Supabase by projects.js.
+                     Static fallback cards are rendered if the DB is empty or unreachable. -->
+                <div class="cards" aria-live="polite" aria-label="Featured projects">
+                    <p style="color: var(--muted); grid-column: 1/-1; text-align: center; padding: 2rem;">
+                        Loading projects…
+                    </p>
                 </div>
             </div>
         </section>
@@ -530,7 +475,7 @@
                         </div>
                         <div class="divider" aria-hidden="true"></div>
                         <div class="social">
-                            <a href="mailto:alexcosmasmsoka@gmail.com">
+                            <a href="mailto:alexcosmasmsoka@gmail.com" rel="noreferrer">
                                 <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill="currentColor"
                                         d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.2-8 4.8-8-4.8V6l8 4.8L20 6v2.2Z" />
@@ -596,7 +541,8 @@
     </footer>
 
     <a class="back-to-top" href="#home" aria-label="Back to top" data-back-to-top>Back to top</a>
-    <script src="./script.js"></script>
+    <script type="module" src="./script.js"></script>
+    <script type="module" src="./projects.js"></script>
 </body>
 
 </html>

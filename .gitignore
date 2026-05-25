@@ -1,0 +1,19 @@
+# Local Supabase credentials — copy supabase.example.js → supabase.js and fill in values
+supabase.js
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Node (if a build step is added later)
+node_modules/
+dist/
+.env
+.env.local
