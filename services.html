@@ -1,0 +1,1059 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Commission an IoT prototype, smart automation system, or custom 3D enclosure from Alex Cosmas Msoka — IoT developer & 3D designer in Tanzania." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#070814" />
+    <title>Services — Msoka IoT Lab</title>
+
+    <meta property="og:title" content="Services — Msoka IoT Lab" />
+    <meta property="og:description" content="Commission an IoT prototype, smart automation system, or custom 3D enclosure from Alex Cosmas Msoka — IoT developer & 3D designer in Tanzania." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://msokaiotlab.com/images/logo%20500%20%C3%97%20500%20px.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Services — Msoka IoT Lab" />
+    <meta name="twitter:description" content="Commission an IoT prototype, smart automation system, or custom 3D enclosure from Alex Cosmas Msoka." />
+    <meta name="twitter:image" content="https://msokaiotlab.com/images/logo%20500%20%C3%97%20500%20px.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" href="./assets/favicon-logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./images/logo%20500%20%C3%97%20500%20px.png" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="canonical" href="https://msokaiotlab.com/services.html" />
+
+    <style>
+        /* ── Page-specific styles for services.html ── */
+
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            padding: calc(var(--header-h) + 72px) 0 80px;
+            overflow: hidden;
+            z-index: 1;
+            background:
+                radial-gradient(900px 600px at 10% 0%, rgba(88, 212, 255, 0.18), transparent 55%),
+                radial-gradient(700px 500px at 90% 20%, rgba(168, 85, 247, 0.16), transparent 55%),
+                linear-gradient(180deg, rgba(7, 8, 20, 0.0) 0%, rgba(7, 8, 20, 0.6) 100%);
+        }
+
+        .page-hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(89, 212, 255, 0.22);
+            background: rgba(89, 212, 255, 0.07);
+            color: rgba(89, 212, 255, 0.9);
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .page-hero-kicker::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--neon-a);
+            box-shadow: 0 0 12px rgba(89, 212, 255, 0.6);
+        }
+
+        .page-hero h1 {
+            margin: 0 0 16px;
+            font-family: "Orbitron", system-ui, sans-serif;
+            font-size: clamp(2rem, 4vw + 1rem, 4rem);
+            letter-spacing: 2px;
+            line-height: 1.1;
+            background: linear-gradient(90deg, #fff 30%, var(--neon-a) 60%, var(--neon-b) 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .page-hero-subtitle {
+            font-size: clamp(1.1rem, 1.5vw + 0.8rem, 1.5rem);
+            color: rgba(255, 255, 255, 0.78);
+            font-weight: 600;
+            margin: 0 0 20px;
+        }
+
+        .page-hero-desc {
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.75;
+            max-width: 62ch;
+            margin: 0;
+        }
+
+        .page-hero-grid {
+            content: "";
+            position: absolute;
+            inset: -80px -80px;
+            background-image:
+                linear-gradient(rgba(88, 212, 255, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+            background-size: 56px 56px;
+            opacity: 0.5;
+            transform: skewY(-4deg);
+            pointer-events: none;
+        }
+
+        /* Floating WhatsApp button */
+        .float-wa {
+            position: fixed;
+            bottom: 72px;
+            right: 14px;
+            width: 52px;
+            height: 52px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
+            z-index: 60;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .float-wa:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 14px 44px rgba(37, 211, 102, 0.5);
+        }
+
+        .float-wa svg {
+            width: 28px;
+            height: 28px;
+            color: #fff;
+        }
+
+        /* Service cards — full detail layout */
+        .services-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 22px;
+        }
+
+        .service-card-full {
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(10px);
+            padding: 28px 28px 24px;
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.3);
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 24px;
+            align-items: start;
+            position: relative;
+            overflow: hidden;
+            transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+        }
+
+        .service-card-full::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(500px 300px at 0% 0%, rgba(88, 212, 255, 0.1), transparent 60%),
+                radial-gradient(500px 300px at 100% 100%, rgba(168, 85, 247, 0.08), transparent 60%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 220ms ease;
+        }
+
+        .service-card-full:hover {
+            transform: translateY(-4px);
+            border-color: rgba(88, 212, 255, 0.24);
+            box-shadow: 0 32px 100px rgba(0, 0, 0, 0.45);
+        }
+
+        .service-card-full:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon-wrap {
+            width: 64px;
+            height: 64px;
+            flex: 0 0 64px;
+            border-radius: 18px;
+            border: 1px solid rgba(89, 212, 255, 0.22);
+            background: rgba(89, 212, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon-wrap svg {
+            width: 32px;
+            height: 32px;
+            color: var(--neon-a);
+        }
+
+        .service-body {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-num {
+            font-family: "Orbitron", system-ui, sans-serif;
+            font-size: 0.78rem;
+            color: rgba(89, 212, 255, 0.65);
+            letter-spacing: 2px;
+            margin: 0 0 6px;
+        }
+
+        .service-body h3 {
+            margin: 0 0 12px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .service-body > p {
+            margin: 0 0 16px;
+            color: var(--muted);
+            line-height: 1.75;
+            max-width: 70ch;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px 16px;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .service-features li::before {
+            content: "";
+            flex: 0 0 6px;
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--neon-a), var(--neon-b));
+            box-shadow: 0 0 10px rgba(88, 212, 255, 0.3);
+            margin-top: 0.45em;
+        }
+
+        .service-price-tag {
+            flex: 0 0 auto;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(89, 212, 255, 0.25);
+            background: rgba(89, 212, 255, 0.08);
+            color: rgba(89, 212, 255, 0.95);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            position: relative;
+            z-index: 1;
+            align-self: start;
+        }
+
+        @media (max-width: 760px) {
+            .service-card-full {
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            .service-price-tag {
+                grid-column: 1 / -1;
+                width: fit-content;
+            }
+
+            .service-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Process timeline */
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0;
+            position: relative;
+            margin-top: 12px;
+        }
+
+        .process-timeline::before {
+            content: "";
+            position: absolute;
+            top: 36px;
+            left: calc(12.5% + 20px);
+            right: calc(12.5% + 20px);
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-a), var(--neon-b), var(--neon-a));
+            opacity: 0.4;
+        }
+
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 12px 24px;
+            position: relative;
+        }
+
+        .process-step-num {
+            width: 72px;
+            height: 72px;
+            border-radius: 999px;
+            border: 2px solid rgba(89, 212, 255, 0.3);
+            background: rgba(89, 212, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+            transition: border-color 200ms ease, background 200ms ease, transform 200ms ease;
+        }
+
+        .process-step:hover .process-step-num {
+            border-color: rgba(89, 212, 255, 0.6);
+            background: rgba(89, 212, 255, 0.14);
+            transform: scale(1.05);
+        }
+
+        .process-step-num .step-label {
+            font-size: 0.65rem;
+            color: rgba(89, 212, 255, 0.7);
+            font-family: "Orbitron", system-ui, sans-serif;
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .process-step-num .step-n {
+            font-family: "Orbitron", system-ui, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--neon-a);
+            line-height: 1;
+        }
+
+        .process-step h3 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            font-family: "Orbitron", system-ui, sans-serif;
+        }
+
+        .process-step p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        @media (max-width: 760px) {
+            .process-timeline {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .process-timeline::before {
+                display: none;
+            }
+
+            .process-step {
+                flex-direction: row;
+                text-align: left;
+                align-items: flex-start;
+                gap: 18px;
+                padding: 16px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .process-step-num {
+                flex: 0 0 56px;
+                width: 56px;
+                height: 56px;
+                margin-bottom: 0;
+            }
+        }
+
+        /* Hire / project form section */
+        .hire-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 18px;
+            align-items: start;
+        }
+
+        @media (max-width: 980px) {
+            .hire-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hire-form {
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            padding: 24px 24px;
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.26);
+        }
+
+        .hire-form h3 {
+            margin: 0 0 20px;
+            font-family: "Orbitron", system-ui, sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: var(--neon-a);
+        }
+
+        .hire-form .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .hire-form .field-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Styled select for forms */
+        select.field-select {
+            width: 100%;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(0, 0, 0, 0.22);
+            color: var(--text);
+            padding: 12px 36px 12px 12px;
+            font: inherit;
+            outline: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.45)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            transition: border-color 160ms ease, box-shadow 160ms ease;
+            cursor: pointer;
+        }
+
+        select.field-select:focus {
+            border-color: rgba(88, 212, 255, 0.32);
+            box-shadow: 0 0 0 4px rgba(88, 212, 255, 0.12);
+            background-color: rgba(0, 0, 0, 0.32);
+        }
+
+        select.field-select option {
+            background: #0b0f24;
+            color: var(--text);
+        }
+
+        /* FAQ teaser */
+        .faq-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .faq-item {
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            overflow: hidden;
+            transition: border-color 200ms ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(89, 212, 255, 0.2);
+        }
+
+        .faq-item summary {
+            padding: 16px 18px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            list-style: none;
+            transition: color 160ms ease;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: "+";
+            color: var(--neon-a);
+            font-size: 1.3rem;
+            line-height: 1;
+            flex: 0 0 auto;
+            transition: transform 180ms ease;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-item[open] summary {
+            color: var(--neon-a);
+        }
+
+        .faq-item p {
+            margin: 0;
+            padding: 0 18px 18px;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .faq-more-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            color: rgba(89, 212, 255, 0.9);
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(89, 212, 255, 0.22);
+            background: rgba(89, 212, 255, 0.07);
+            transition: background 160ms ease, transform 160ms ease;
+        }
+
+        .faq-more-link:hover {
+            background: rgba(89, 212, 255, 0.12);
+            transform: translateY(-1px);
+        }
+
+        /* Image placeholder */
+        .img-ph {
+            border-radius: var(--radius-sm);
+            border: 1px dashed rgba(168, 85, 247, 0.28);
+            background: radial-gradient(420px 260px at 30% 20%, rgba(88, 212, 255, 0.1), transparent 62%),
+                radial-gradient(420px 260px at 80% 60%, rgba(168, 85, 247, 0.1), transparent 65%),
+                rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+        }
+
+        .img-ph-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .img-ph-icon {
+            width: 40px;
+            height: 40px;
+            color: rgba(168, 85, 247, 0.55);
+        }
+
+        .img-ph-label {
+            font-family: "Orbitron", system-ui, sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .img-ph-desc {
+            margin: 0;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.35);
+            line-height: 1.5;
+            max-width: 28ch;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+    <div class="hud-cursor" data-cursor>
+        <div class="hud-cursor-inner"></div>
+        <div class="hud-cursor-ornament"></div>
+    </div>
+    <div class="scroll-progress" data-scroll-progress></div>
+    <a class="skip-link" href="#services-hero">Skip to content</a>
+    <div class="tech-bg" aria-hidden="true">
+        <div class="tech-grid"></div>
+        <div class="tech-circuits"></div>
+        <div class="tech-scan"></div>
+        <div class="tech-orb tech-orb-a"></div>
+        <div class="tech-orb tech-orb-b"></div>
+    </div>
+
+    <header class="site-header" data-header>
+        <nav class="nav container" aria-label="Primary">
+            <a class="brand" href="index.html" aria-label="Msoka IoT Lab home">
+                <img class="brand-logo" src="./images/logo%20500%20%C3%97%20500%20px.png" alt="" aria-hidden="true" />
+                <span class="brand-text">Msoka <span>IoT</span> Lab</span>
+            </a>
+            <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="nav-menu" data-nav-toggle>
+                <span class="nav-toggle-lines" aria-hidden="true"></span>
+            </button>
+            <div class="nav-menu" id="nav-menu" data-nav-menu>
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.html#about">About</a>
+                <a class="nav-link" href="index.html#iot-projects">Projects</a>
+                <a class="nav-link is-active" href="services.html">Services</a>
+                <a class="nav-link" href="blog.html">Build Log</a>
+                <a class="nav-link" href="index.html#contact">Contact</a>
+                <a class="nav-cta" href="#hire">Hire Me</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ═══════════════════════════════════════════════════════ PAGE HERO -->
+        <section class="page-hero" id="services-hero" aria-label="Services overview">
+            <div class="page-hero-grid" aria-hidden="true"></div>
+            <div class="container">
+                <p class="page-hero-kicker reveal">IoT Development · 3D Design · Automation</p>
+                <h1 class="reveal">SERVICES &amp; COLLABORATION</h1>
+                <p class="page-hero-subtitle reveal">Got an idea? Let's build it.</p>
+                <p class="page-hero-desc reveal">I build practical IoT systems, automation solutions, and custom 3D
+                    hardware — from first concept to working prototype.</p>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════ SERVICES DETAIL -->
+        <section class="section" id="services-detail" aria-label="Services offered">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>WHAT I BUILD</h2>
+                    <p>End-to-end development across IoT, automation, 3D design, and connected dashboards.</p>
+                </div>
+
+                <div class="services-detail-grid">
+
+                    <!-- 01 IoT Prototype Development -->
+                    <article class="service-card-full reveal">
+                        <div class="service-icon-wrap" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                                <circle cx="12" cy="14" r="2"/>
+                                <path d="M12 12v-2M12 16v2M10 14H8M14 14h2"/>
+                            </svg>
+                        </div>
+                        <div class="service-body">
+                            <p class="service-num">01</p>
+                            <h3>IoT Prototype Development</h3>
+                            <p>End-to-end prototype building: schematic design, PCB/breadboard assembly, firmware
+                                programming, and testing. I take your idea from concept sketch to a working device you
+                                can hold and demonstrate. Every prototype is documented so you can replicate or hand it
+                                off to production. I work with ESP32, Arduino, Raspberry Pi, and similar platforms.</p>
+                            <ul class="service-features" aria-label="What's included">
+                                <li>Hardware selection &amp; sourcing</li>
+                                <li>Sensor integration &amp; calibration</li>
+                                <li>Firmware (C/C++ / Python)</li>
+                                <li>Tested working prototype + documentation</li>
+                            </ul>
+                        </div>
+                        <span class="service-price-tag" aria-label="Starting price">From $80 USD</span>
+                    </article>
+
+                    <!-- 02 Smart Automation Systems -->
+                    <article class="service-card-full reveal">
+                        <div class="service-icon-wrap" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                <path d="M12 2a10 10 0 1 0 10 10"/>
+                                <path d="M12 6v6l4 2"/>
+                                <circle cx="19" cy="5" r="3"/>
+                                <path d="m17.8 3.8 2.4 2.4M19 2v2M21 4h-2"/>
+                            </svg>
+                        </div>
+                        <div class="service-body">
+                            <p class="service-num">02</p>
+                            <h3>Smart Automation Systems</h3>
+                            <p>Automate physical processes using sensors, actuators, and programmable logic. Whether
+                                it's irrigation scheduling, access control, or environmental monitoring — I design
+                                systems that respond intelligently to real-world conditions. Includes hardware build,
+                                firmware logic, and basic status indicators or alerts.</p>
+                            <ul class="service-features" aria-label="What's included">
+                                <li>Multi-sensor arrays</li>
+                                <li>Relay &amp; actuator control</li>
+                                <li>Scheduled &amp; threshold-based logic</li>
+                                <li>Mobile/web alerts</li>
+                            </ul>
+                        </div>
+                        <span class="service-price-tag" aria-label="Starting price">From $100 USD</span>
+                    </article>
+
+                    <!-- 03 Custom 3D Enclosures -->
+                    <article class="service-card-full reveal">
+                        <div class="service-icon-wrap" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                <path d="M12 2 2 7l10 5 10-5-10-5Z"/>
+                                <path d="m2 17 10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <div class="service-body">
+                            <p class="service-num">03</p>
+                            <h3>Custom 3D Enclosures</h3>
+                            <p>Professionally designed and 3D-printed housings for electronics — functional, aesthetic,
+                                and built for your specific circuit. Whether you need a clean enclosure for a sensor
+                                node, a desk device, or a wall-mount panel, I design it to fit your exact board
+                                dimensions and mounting requirements.</p>
+                            <ul class="service-features" aria-label="What's included">
+                                <li>CAD design from scratch or existing board</li>
+                                <li>FDM printing in PLA/PETG/ABS</li>
+                                <li>Component mounting &amp; cable management</li>
+                                <li>Design files included</li>
+                            </ul>
+                        </div>
+                        <span class="service-price-tag" aria-label="Starting price">From $30 USD</span>
+                    </article>
+
+                    <!-- 04 IoT Dashboard & Web -->
+                    <article class="service-card-full reveal">
+                        <div class="service-icon-wrap" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M3 9h18"/>
+                                <path d="M9 21V9"/>
+                                <path d="M7 6h.01M11 6h.01M15 6h.01"/>
+                            </svg>
+                        </div>
+                        <div class="service-body">
+                            <p class="service-num">04</p>
+                            <h3>IoT Dashboard &amp; Web</h3>
+                            <p>A connected web interface that displays live sensor data, allows remote control of
+                                devices, and sends notifications. Built on a modern stack with real-time database sync.
+                                Ideal for irrigation systems, environmental monitors, or any device that benefits from
+                                a browser-based control panel.</p>
+                            <ul class="service-features" aria-label="What's included">
+                                <li>Real-time data visualization</li>
+                                <li>Remote device control</li>
+                                <li>Email/WhatsApp alerts</li>
+                                <li>Hosted on Supabase + Vercel</li>
+                            </ul>
+                        </div>
+                        <span class="service-price-tag" aria-label="Starting price">From $120 USD</span>
+                    </article>
+
+                    <!-- 05 Consultation & Training -->
+                    <article class="service-card-full reveal">
+                        <div class="service-icon-wrap" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <div class="service-body">
+                            <p class="service-num">05</p>
+                            <h3>Consultation &amp; Training</h3>
+                            <p>Expert technical guidance for your IoT project, team, or classroom — covering hardware
+                                selection, architecture, and hands-on prototyping. Sessions are structured around your
+                                specific goals, whether you're starting from zero or need to troubleshoot an existing
+                                system. Available online or in-person in Tanzania.</p>
+                            <ul class="service-features" aria-label="What's included">
+                                <li>1-on-1 or group sessions</li>
+                                <li>Hardware &amp; software stack advice</li>
+                                <li>Hands-on workshop format</li>
+                                <li>Follow-up Q&amp;A included</li>
+                            </ul>
+                        </div>
+                        <span class="service-price-tag" aria-label="Starting price">From $40 USD</span>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════ PROCESS -->
+        <section class="section" id="process" aria-label="Project process">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>HOW IT WORKS</h2>
+                    <p>A clear, collaborative process — from your first message to finished prototype.</p>
+                </div>
+
+                <div class="process-timeline" role="list">
+
+                    <div class="process-step reveal" role="listitem">
+                        <div class="process-step-num" aria-hidden="true">
+                            <span class="step-label">STEP</span>
+                            <span class="step-n">1</span>
+                        </div>
+                        <h3>Brief</h3>
+                        <p>Send me a message on WhatsApp or the contact form. Describe the problem you want to
+                            solve.</p>
+                    </div>
+
+                    <div class="process-step reveal" role="listitem">
+                        <div class="process-step-num" aria-hidden="true">
+                            <span class="step-label">STEP</span>
+                            <span class="step-n">2</span>
+                        </div>
+                        <h3>Propose</h3>
+                        <p>I review your brief, ask clarifying questions, and send a proposal with specs, timeline,
+                            and cost.</p>
+                    </div>
+
+                    <div class="process-step reveal" role="listitem">
+                        <div class="process-step-num" aria-hidden="true">
+                            <span class="step-label">STEP</span>
+                            <span class="step-n">3</span>
+                        </div>
+                        <h3>Build</h3>
+                        <p>I build iteratively with progress photos and updates. You're involved at every key
+                            decision.</p>
+                    </div>
+
+                    <div class="process-step reveal" role="listitem">
+                        <div class="process-step-num" aria-hidden="true">
+                            <span class="step-label">STEP</span>
+                            <span class="step-n">4</span>
+                        </div>
+                        <h3>Deliver</h3>
+                        <p>You receive the finished prototype, full source code, 3D files, and a build guide.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════ HIRE / PROJECT FORM -->
+        <section class="section" id="hire" aria-label="Start a project">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>START A PROJECT</h2>
+                    <p>Tell me about what you want to build. I'll get back to you within 24 hours.</p>
+                </div>
+
+                <div class="hire-grid">
+                    <div class="hire-form reveal">
+                        <h3>PROJECT BRIEF</h3>
+                        <form autocomplete="on" novalidate>
+                            <div class="field-row">
+                                <label class="field">
+                                    <span>Name</span>
+                                    <input name="name" type="text" placeholder="Your name" required
+                                        autocomplete="name" />
+                                </label>
+                                <label class="field">
+                                    <span>Email</span>
+                                    <input name="email" type="email" placeholder="you@domain.com" required
+                                        autocomplete="email" />
+                                </label>
+                            </div>
+                            <label class="field">
+                                <span>Service type</span>
+                                <select name="service" class="field-select" required>
+                                    <option value="" disabled selected>Select a service…</option>
+                                    <option value="IoT Prototype">IoT Prototype</option>
+                                    <option value="Smart Automation">Smart Automation</option>
+                                    <option value="3D Enclosure">3D Enclosure</option>
+                                    <option value="IoT Dashboard">IoT Dashboard</option>
+                                    <option value="Consultation">Consultation</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </label>
+                            <label class="field">
+                                <span>Project brief</span>
+                                <textarea name="brief" rows="6"
+                                    placeholder="Describe the problem you want to solve and what you need built…"
+                                    required></textarea>
+                            </label>
+                            <label class="field">
+                                <span>Budget range</span>
+                                <select name="budget" class="field-select">
+                                    <option value="" disabled selected>Select a budget range…</option>
+                                    <option value="Under $50">Under $50</option>
+                                    <option value="$50–100">$50–100</option>
+                                    <option value="$100–250">$100–250</option>
+                                    <option value="$250–500">$250–500</option>
+                                    <option value="$500+">$500+</option>
+                                </select>
+                            </label>
+                            <button class="btn primary" type="submit" style="width:100%; height:48px; margin-top:4px;">
+                                Send Project Brief
+                            </button>
+                            <p class="form-note" role="status" aria-live="polite" data-form-note></p>
+                        </form>
+                    </div>
+
+                    <aside class="contact-panel reveal" aria-label="Contact details">
+                        <div class="contact-item">
+                            <span class="contact-label">Response time</span>
+                            <span class="contact-value">Typically within 24 hours</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Location</span>
+                            <span class="contact-value">Tanzania (Remote / Hybrid)</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Availability</span>
+                            <span class="contact-value">Open for new projects</span>
+                        </div>
+                        <div class="divider" aria-hidden="true"></div>
+                        <div class="social">
+                            <a href="https://wa.me/255619215321" target="_blank" rel="noreferrer noopener"
+                                aria-label="Chat on WhatsApp">
+                                <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill="currentColor"
+                                        d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 0 16c-1.3 0-2.5-.3-3.6-.8l-.5-.2-3 .8.8-2.9-.3-.6A8 8 0 0 1 12 4Zm-3 3.5c-.3 0-.6.1-.8.3-.5.5-1 1.2-1 2.1 0 1.1.5 2.2 1.2 3.2 1.2 1.7 2.9 3 4.9 3.8.8.3 1.6.5 2.2.4.7-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3l-1.5-.7c-.2-.1-.4-.1-.6.1l-.7.9c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2.1-1.2-.8-.6-1.4-1.4-1.5-1.7-.1-.2 0-.4.1-.5l.5-.6c.1-.1.2-.3.3-.5.1-.2.1-.4 0-.6L10 7.9c-.1-.3-.3-.4-.6-.4H9Z" />
+                                </svg>
+                                WhatsApp — +255 619 215 321
+                            </a>
+                            <a href="https://www.instagram.com/alexcosmasmsoka" target="_blank"
+                                rel="noreferrer noopener" aria-label="Instagram profile">
+                                <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill="currentColor"
+                                        d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.5-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z" />
+                                </svg>
+                                Instagram — @alexcosmasmsoka
+                            </a>
+                            <a href="mailto:alexcosmasmsoka@gmail.com" rel="noreferrer"
+                                aria-label="Send an email">
+                                <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill="currentColor"
+                                        d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.2-8 4.8-8-4.8V6l8 4.8L20 6v2.2Z" />
+                                </svg>
+                                alexcosmasmsoka@gmail.com
+                            </a>
+                        </div>
+                        <a class="contact-link" href="index.html#iot-projects">View projects →</a>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════════ FAQ TEASER -->
+        <section class="section" id="faq-teaser" aria-label="Frequently asked questions">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>COMMON QUESTIONS</h2>
+                    <p>Quick answers to things people ask before starting a project.</p>
+                </div>
+
+                <div class="faq-list reveal">
+
+                    <details class="faq-item">
+                        <summary>How long does a typical IoT prototype take?</summary>
+                        <p>Most basic prototypes take 1–3 weeks from brief to delivery, depending on complexity and
+                            component availability. Simple sensor nodes can be done in days; multi-sensor automation
+                            systems with a dashboard typically take 2–4 weeks. You'll get a timeline in the proposal.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Do you ship hardware internationally from Tanzania?</summary>
+                        <p>Yes, for finished prototypes I can arrange shipping via DHL or similar carriers. For 3D
+                            enclosure designs I can deliver digital files (STL/STEP/F3D) instantly via email, so you
+                            can print locally. Remote IoT dashboard projects require no shipping at all.</p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>What's the payment process?</summary>
+                        <p>I work with a 50% upfront deposit to start, and the remaining 50% on delivery. Payments
+                            can be made via M-Pesa, bank transfer, or crypto. For consultation and training
+                            sessions, full payment is required upfront. I'll confirm available options in the
+                            proposal.</p>
+                    </details>
+
+                </div>
+
+                <a class="faq-more-link reveal" href="index.html#faq">
+                    More questions → see full FAQ
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <img class="footer-logo" src="./images/logo%20500%20%C3%97%20500%20px.png" alt="" aria-hidden="true" />
+                <span class="brand-text">Msoka <span>IoT</span> Lab</span>
+                <p>Modern connected systems with neon-future aesthetics.</p>
+            </div>
+            <div class="footer-links" aria-label="Footer navigation">
+                <a href="index.html#about">About</a>
+                <a href="index.html#iot-projects">Projects</a>
+                <a href="services.html">Services</a>
+                <a href="blog.html">Build Log</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <div class="footer-meta">
+                <span>© <span data-year></span> Msoka IoT Lab</span>
+                <span class="sep" aria-hidden="true">·</span>
+                <span>Crafted for the connected world</span>
+            </div>
+        </div>
+    </footer>
+
+    <a class="back-to-top" href="#services-hero" aria-label="Back to top" data-back-to-top>Back to top</a>
+
+    <a class="float-wa" href="https://wa.me/255619215321" target="_blank" rel="noreferrer noopener"
+        aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+                d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 0 16c-1.3 0-2.5-.3-3.6-.8l-.5-.2-3 .8.8-2.9-.3-.6A8 8 0 0 1 12 4Zm-3 3.5c-.3 0-.6.1-.8.3-.5.5-1 1.2-1 2.1 0 1.1.5 2.2 1.2 3.2 1.2 1.7 2.9 3 4.9 3.8.8.3 1.6.5 2.2.4.7-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3l-1.5-.7c-.2-.1-.4-.1-.6.1l-.7.9c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2.1-1.2-.8-.6-1.4-1.4-1.5-1.7-.1-.2 0-.4.1-.5l.5-.6c.1-.1.2-.3.3-.5.1-.2.1-.4 0-.6L10 7.9c-.1-.3-.3-.4-.6-.4H9Z" />
+        </svg>
+    </a>
+
+    <script type="module" src="./script.js"></script>
+    <script type="module">
+        import { supabase } from './supabase.js';
+        const hireForm = document.querySelector('#hire form');
+        const hireNote = document.querySelector('[data-form-note]');
+        hireForm?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fd = new FormData(hireForm);
+            const name = String(fd.get('name') ?? '').trim();
+            const email = String(fd.get('email') ?? '').trim();
+            const service = String(fd.get('service') ?? '');
+            const brief = String(fd.get('brief') ?? '').trim();
+            const budget = String(fd.get('budget') ?? '');
+            const message = `Service: ${service}\nBudget: ${budget}\n\nProject Brief:\n${brief}`;
+            const btn = hireForm.querySelector('button[type="submit"]');
+            try {
+                if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+                const { error } = await supabase.from('messages').insert([{ name, email, message }]);
+                if (error) throw error;
+                hireForm.reset();
+                if (hireNote) {
+                    hireNote.textContent = '✓ Brief received! I\'ll get back to you within 24 hours.';
+                    hireNote.style.color = 'var(--neon-c)';
+                }
+            } catch {
+                const mailto = `mailto:alexcosmasmsoka@gmail.com?subject=Project Brief from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}`;
+                window.location.href = mailto;
+                if (hireNote) hireNote.textContent = 'Opening email app as backup…';
+            } finally {
+                if (btn) { btn.disabled = false; btn.textContent = 'Send Project Brief'; }
+            }
+        });
+    </script>
+</body>
+
+</html>

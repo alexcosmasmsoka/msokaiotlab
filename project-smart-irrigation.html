@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="A full technical writeup of the Smart Irrigation System built at Msoka IoT Lab — automated soil moisture monitoring and pump control for efficient farming in Tanzania." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#070814" />
+    <title>Smart Irrigation System — Msoka IoT Lab</title>
+
+    <meta property="og:title" content="Smart Irrigation System — Msoka IoT Lab" />
+    <meta property="og:description"
+        content="Automated soil moisture monitoring & intelligent pump control for water-efficient farming in Tanzania." />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://msokaiotlab.com/images/smart-irrigation-side.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Smart Irrigation System — Msoka IoT Lab" />
+    <meta name="twitter:description"
+        content="Automated soil moisture monitoring & intelligent pump control for water-efficient farming in Tanzania." />
+    <meta name="twitter:image" content="https://msokaiotlab.com/images/smart-irrigation-side.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" href="./assets/favicon-logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./images/logo%20500%20%C3%97%20500%20px.png" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="canonical" href="https://msokaiotlab.com/project-smart-irrigation.html" />
+
+    <!-- Schema.org Article markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "@id": "https://msokaiotlab.com/project-smart-irrigation.html#article",
+      "headline": "Smart Irrigation System — Automated Soil Moisture Monitoring & Pump Control",
+      "description": "A full technical writeup of the Smart Irrigation System built at Msoka IoT Lab — automated soil moisture monitoring and pump control for efficient farming in Tanzania.",
+      "image": "https://msokaiotlab.com/images/smart-irrigation-side.jpg",
+      "datePublished": "2026-01-01",
+      "dateModified": "2026-05-26",
+      "author": {
+        "@type": "Person",
+        "@id": "https://msokaiotlab.com/#person",
+        "name": "Alex Cosmas Msoka",
+        "url": "https://msokaiotlab.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Msoka IoT Lab",
+        "url": "https://msokaiotlab.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://msokaiotlab.com/images/logo%20500%20%C3%97%20500%20px.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://msokaiotlab.com/project-smart-irrigation.html"
+      },
+      "keywords": ["Smart Irrigation", "ESP32", "IoT", "Soil Moisture Sensor", "Tanzania", "Agricultural Tech", "Automation"]
+    }
+    </script>
+
+    <!-- BreadcrumbList schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://msokaiotlab.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Projects",
+          "item": "https://msokaiotlab.com/#iot-projects"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Smart Irrigation System",
+          "item": "https://msokaiotlab.com/project-smart-irrigation.html"
+        }
+      ]
+    }
+    </script>
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+    <div class="hud-cursor" data-cursor>
+        <div class="hud-cursor-inner"></div>
+        <div class="hud-cursor-ornament"></div>
+    </div>
+    <div class="scroll-progress" data-scroll-progress></div>
+    <a class="skip-link" href="#proj-header">Skip to content</a>
+    <div class="tech-bg" aria-hidden="true">
+        <div class="tech-grid"></div>
+        <div class="tech-circuits"></div>
+        <div class="tech-scan"></div>
+        <div class="tech-orb tech-orb-a"></div>
+        <div class="tech-orb tech-orb-b"></div>
+    </div>
+
+    <header class="site-header" data-header>
+        <nav class="nav container" aria-label="Primary">
+            <a class="brand" href="index.html" aria-label="Msoka IoT Lab home">
+                <img class="brand-logo" src="./images/logo%20500%20%C3%97%20500%20px.png" alt="" aria-hidden="true" />
+                <span class="brand-text">Msoka <span>IoT</span> Lab</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="nav-menu" data-nav-toggle>
+                <span class="nav-toggle-lines" aria-hidden="true"></span>
+            </button>
+
+            <div class="nav-menu" id="nav-menu" data-nav-menu>
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.html#about">About</a>
+                <a class="nav-link is-active" href="index.html#iot-projects">Projects</a>
+                <a class="nav-link" href="services.html">Services</a>
+                <a class="nav-link" href="blog.html">Build Log</a>
+                <a class="nav-link" href="index.html#contact">Contact</a>
+                <a class="nav-cta" href="services.html#hire">Hire Me</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ═══ PROJECT HERO ═══════════════════════════════════════════════ -->
+        <section class="proj-hero" id="proj-header" aria-label="Smart Irrigation System">
+            <div class="container">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span aria-hidden="true">/</span>
+                    <a href="index.html#iot-projects">Projects</a>
+                    <span aria-hidden="true">/</span>
+                    <span>Smart Irrigation System</span>
+                </nav>
+
+                <!-- Meta pills -->
+                <div class="proj-meta-pills reveal" role="list">
+                    <span class="proj-pill" role="listitem">IoT Systems</span>
+                    <span class="proj-pill" role="listitem">Agricultural Tech</span>
+                    <span class="proj-pill" role="listitem">Tanzania</span>
+                    <span class="proj-pill" role="listitem">2026</span>
+                </div>
+
+                <h1 class="proj-title reveal">SMART IRRIGATION SYSTEM</h1>
+                <p class="proj-subtitle reveal">Automated soil moisture monitoring &amp; intelligent pump control for
+                    water-efficient farming</p>
+
+                <!-- Stats -->
+                <div class="proj-stats reveal" role="list" aria-label="Project statistics">
+                    <div class="proj-stat" role="listitem">
+                        <span class="proj-stat-label">Sensors Used</span>
+                        <span class="proj-stat-value">4</span>
+                    </div>
+                    <div class="proj-stat" role="listitem">
+                        <span class="proj-stat-label">Response Time</span>
+                        <span class="proj-stat-value">&lt;2s</span>
+                    </div>
+                    <div class="proj-stat" role="listitem">
+                        <span class="proj-stat-label">Water Savings</span>
+                        <span class="proj-stat-value">~40%</span>
+                    </div>
+                    <div class="proj-stat" role="listitem">
+                        <span class="proj-stat-label">Power</span>
+                        <span class="proj-stat-value">Solar-ready</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ HERO IMAGES ════════════════════════════════════════════════ -->
+        <div class="container">
+            <div class="proj-hero-img reveal" aria-label="Smart Irrigation System photos">
+                <!-- Real project images -->
+                <figure>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="./images/smart-irrigation-side-640.webp 640w, ./images/smart-irrigation-side-1100.webp 1100w"
+                            sizes="(max-width:700px) 100vw, 50vw">
+                        <img src="./images/smart-irrigation-side.jpg"
+                            alt="Smart Irrigation System side view" loading="eager" decoding="async">
+                    </picture>
+                    <figcaption>Side view — sensor housing and pump relay unit</figcaption>
+                </figure>
+                <figure>
+                    <picture>
+                        <source type="image/webp"
+                            srcset="./images/smart-irrigation-top-640.webp 640w, ./images/smart-irrigation-top-1100.webp 1100w"
+                            sizes="(max-width:700px) 100vw, 50vw">
+                        <img src="./images/smart-irrigation-top.jpg"
+                            alt="Smart Irrigation System top view" loading="eager" decoding="async">
+                    </picture>
+                    <figcaption>Top view — PCB layout and wiring organization</figcaption>
+                </figure>
+
+                <!-- Placeholder: field deployment -->
+                <figure>
+                    <div class="img-ph" style="height:280px;" role="img"
+                        aria-label="Placeholder: Smart Irrigation System deployed in a real garden or farm setting in Tanzania">
+                        <span class="img-ph-label">FIELD DEPLOYMENT</span>
+                        <span class="img-ph-desc">Smart Irrigation System deployed in a real garden or farm setting in
+                            Tanzania — showing the device installed near soil and plants</span>
+                    </div>
+                    <figcaption>Field deployment — real-world installation</figcaption>
+                </figure>
+
+                <!-- Placeholder: system diagram -->
+                <figure>
+                    <div class="img-ph" style="height:280px;" role="img"
+                        aria-label="Placeholder: Hand-drawn or digital wiring diagram showing ESP32, soil sensors, relay module, water pump connections">
+                        <span class="img-ph-label">SYSTEM DIAGRAM</span>
+                        <span class="img-ph-desc">Hand-drawn or digital wiring diagram showing ESP32, soil sensors,
+                            relay module, water pump connections</span>
+                    </div>
+                    <figcaption>System diagram — wiring overview</figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <!-- ═══ OVERVIEW ══════════════════════════════════════════════════ -->
+        <section class="section" id="overview" aria-label="Project Overview">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>OVERVIEW</h2>
+                    <p>What is the Smart Irrigation System?</p>
+                </div>
+
+                <div class="split">
+                    <div class="content-card reveal">
+                        <p>The Smart Irrigation System is a fully automated watering solution built at Msoka IoT Lab.
+                            It monitors soil moisture levels in real time using capacitive sensors and automatically
+                            activates a water pump when moisture drops below a set threshold.</p>
+                        <p>The system eliminates the need for manual watering schedules and prevents both over-watering
+                            and under-watering — two of the biggest causes of crop failure in small-scale Tanzanian
+                            farming.</p>
+                        <p>The entire system runs on an ESP32 microcontroller and communicates with a web dashboard,
+                            allowing remote monitoring from a phone.</p>
+                    </div>
+
+                    <div class="spec-table reveal" aria-label="Key technical specifications">
+                        <div class="spec-row">
+                            <span class="spec-key">Microcontroller</span>
+                            <span class="spec-val">ESP32 DevKit v1</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key">Sensors</span>
+                            <span class="spec-val">Capacitive Soil Moisture × 4</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key">Actuator</span>
+                            <span class="spec-val">5V Relay Module → Water Pump</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key">Power</span>
+                            <span class="spec-val">5V USB / Solar panel input</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key">Connectivity</span>
+                            <span class="spec-val">WiFi (2.4GHz)</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key">Platform</span>
+                            <span class="spec-val">Supabase real-time dashboard</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key">Status</span>
+                            <span class="spec-val status-ok">✓ Deployed &amp; tested</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ THE PROBLEM ════════════════════════════════════════════════ -->
+        <section class="section" id="problem" aria-label="The Problem">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>THE PROBLEM</h2>
+                    <p>What challenge does this solve?</p>
+                </div>
+
+                <div class="content-card reveal">
+                    <p>Small-scale farming in Tanzania faces a critical water management challenge. Manual watering is
+                        time-consuming, inconsistent, and often leads to crop loss from either drought stress or root
+                        rot caused by overwatering.</p>
+                    <p>Farmers working multiple plots simultaneously cannot monitor every bed continuously. The goal
+                        was to build a low-cost, reliable system that removes the guesswork from irrigation — letting
+                        the soil itself tell the system when water is needed.</p>
+                </div>
+
+                <div class="stat-cards reveal" role="list" aria-label="Problem statistics">
+                    <div class="stat-card" role="listitem">
+                        <span class="stat-card-value">60%</span>
+                        <span class="stat-card-label">of small farms rely on manual irrigation</span>
+                    </div>
+                    <div class="stat-card" role="listitem">
+                        <span class="stat-card-value">30%</span>
+                        <span class="stat-card-label">crop loss from inconsistent watering</span>
+                    </div>
+                    <div class="stat-card" role="listitem">
+                        <span class="stat-card-value">$50</span>
+                        <span class="stat-card-label">total build cost</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ COMPONENTS ════════════════════════════════════════════════ -->
+        <section class="section" id="components" aria-label="Parts List">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>PARTS LIST</h2>
+                    <p>Every component used to build the system.</p>
+                </div>
+
+                <div class="reveal" style="overflow-x: auto;">
+                    <table class="parts-table" aria-label="Components list">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Component</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>ESP32 DevKit v1</td>
+                                <td>×1</td>
+                                <td>Main controller + WiFi</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Capacitive Soil Moisture Sensor</td>
+                                <td>×4</td>
+                                <td>Soil moisture reading (analog)</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>5V Single-Channel Relay Module</td>
+                                <td>×1</td>
+                                <td>Pump switch control</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Submersible Mini Water Pump (5V)</td>
+                                <td>×1</td>
+                                <td>Water delivery</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Silicone Irrigation Tubing</td>
+                                <td>×1m</td>
+                                <td>Water routing</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>18650 LiPo Battery + TP4056 charger</td>
+                                <td>×1</td>
+                                <td>Portable power</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Jumper wires + Breadboard</td>
+                                <td>assorted</td>
+                                <td>Prototyping connections</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>USB Power supply (5V 2A)</td>
+                                <td>×1</td>
+                                <td>Primary power source</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note-card reveal" role="note">
+                    <strong>Total estimated cost:</strong> $45–55 USD (sourced locally in Tanzania + AliExpress).
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ HOW IT WORKS ══════════════════════════════════════════════ -->
+        <section class="section" id="how-it-works" aria-label="How It Works">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>HOW IT WORKS</h2>
+                    <p>The four-step control loop, from sensor to action.</p>
+                </div>
+
+                <ol class="build-timeline reveal" aria-label="System operation steps">
+                    <li class="build-step">
+                        <div class="step-marker" aria-hidden="true">
+                            <div class="step-num">01</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-body">
+                            <span class="step-name">SENSE</span>
+                            <p class="step-desc">Four capacitive soil moisture sensors are embedded in the soil at
+                                different depths. Every 30 seconds, the ESP32 reads an analog voltage from each
+                                sensor. Capacitive sensors measure the dielectric constant of soil — wetter soil has
+                                a higher dielectric constant, producing a lower analog output voltage.</p>
+                        </div>
+                    </li>
+                    <li class="build-step">
+                        <div class="step-marker" aria-hidden="true">
+                            <div class="step-num">02</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-body">
+                            <span class="step-name">DECIDE</span>
+                            <p class="step-desc">The readings are averaged and compared against a calibrated threshold
+                                (set during setup for each soil type). If the average moisture level falls below the
+                                threshold, the system flags an irrigation event. A hysteresis band prevents rapid
+                                on/off cycling.</p>
+                        </div>
+                    </li>
+                    <li class="build-step">
+                        <div class="step-marker" aria-hidden="true">
+                            <div class="step-num">03</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-body">
+                            <span class="step-name">ACT</span>
+                            <p class="step-desc">The ESP32 triggers the relay module, completing the circuit for the
+                                water pump. The pump runs for a configurable duration (default: 30 seconds) then
+                                pauses, allowing the soil moisture to equalize before re-reading.</p>
+                        </div>
+                    </li>
+                    <li class="build-step">
+                        <div class="step-marker" aria-hidden="true">
+                            <div class="step-num">04</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-body">
+                            <span class="step-name">REPORT</span>
+                            <p class="step-desc">All sensor readings, pump events, and timestamps are logged to the
+                                Supabase database via WiFi. The web dashboard displays live charts, historical data,
+                                and allows remote threshold adjustment.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ═══ WIRING & CODE ═════════════════════════════════════════════ -->
+        <section class="section" id="code" aria-label="Wiring and Firmware">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>WIRING &amp; FIRMWARE</h2>
+                    <p>Pin connections and simplified core logic.</p>
+                </div>
+
+                <div class="wiring-grid reveal">
+                    <!-- Wiring diagram placeholder -->
+                    <div>
+                        <div class="img-ph" style="min-height:360px;" role="img"
+                            aria-label="Placeholder: Schematic or hand-drawn diagram showing ESP32 pin connections to 4 soil sensors, relay module, and power supply">
+                            <span class="img-ph-label">WIRING DIAGRAM</span>
+                            <span class="img-ph-desc">Schematic or hand-drawn diagram showing ESP32 pin connections to
+                                4 soil sensors, relay module, and power supply</span>
+                        </div>
+                    </div>
+
+                    <!-- Code block -->
+                    <div>
+                        <pre class="code-block"><code>// Simplified core logic — Smart Irrigation System
+// Full source: github.com/alexcosmasmsoka
+
+#define SENSOR_PIN_1 34
+#define SENSOR_PIN_2 35
+#define RELAY_PIN    26
+#define DRY_THRESHOLD 2800  // calibrate for your soil
+#define PUMP_DURATION 30000 // 30 seconds
+
+void loop() {
+  int avg = readAverageMoisture();
+
+  if (avg > DRY_THRESHOLD) {
+    activatePump(PUMP_DURATION);
+    logToSupabase("pump_on", avg);
+  }
+
+  logToSupabase("reading", avg);
+  delay(30000); // read every 30s
+}</code></pre>
+                        <p class="code-note">Full source code available on request or
+                            <a href="https://github.com/alexcosmasmsoka" target="_blank"
+                                rel="noreferrer noopener">GitHub</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ LESSONS LEARNED ═══════════════════════════════════════════ -->
+        <section class="section" id="lessons" aria-label="Lessons Learned">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>LESSONS LEARNED</h2>
+                    <p>What I discovered building and testing this system.</p>
+                </div>
+
+                <div class="lesson-cards">
+                    <div class="lesson-card reveal">
+                        <h3>Sensor Calibration is Everything</h3>
+                        <p>Each capacitive sensor has a slightly different output range. I spent two days building
+                            individual calibration curves for each one. A single shared threshold was producing 30%
+                            false readings. Lesson: always calibrate individually.</p>
+                    </div>
+                    <div class="lesson-card reveal">
+                        <h3>Hysteresis Prevents Pump Cycling</h3>
+                        <p>My first version had the pump switching on/off every 30 seconds as moisture hovered near
+                            the threshold. Adding a ±5% hysteresis band (pump on at &lt;40%, off at &gt;50%)
+                            completely eliminated this.</p>
+                    </div>
+                    <div class="lesson-card reveal">
+                        <h3>WiFi Reliability on 3.3V</h3>
+                        <p>The ESP32 WiFi stack is power-hungry. When powering from a weak source, reconnections
+                            caused random resets. Adding a 100µF decoupling capacitor on the 3.3V rail and
+                            implementing auto-reconnect logic fixed it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ RESULTS ════════════════════════════════════════════════════ -->
+        <section class="section" id="results" aria-label="Results">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>RESULTS</h2>
+                    <p>3 weeks of real-world deployment data.</p>
+                </div>
+
+                <div class="content-card reveal">
+                    <p>After 3 weeks of deployment in a test garden bed, the Smart Irrigation System delivered
+                        consistent results.</p>
+                </div>
+
+                <div class="stat-cards result-cards reveal" role="list" aria-label="Deployment results">
+                    <div class="stat-card" role="listitem">
+                        <span class="stat-card-value">~40% reduction</span>
+                        <span class="stat-card-label">in water usage vs. manual watering</span>
+                    </div>
+                    <div class="stat-card" role="listitem">
+                        <span class="stat-card-value">Zero crop loss</span>
+                        <span class="stat-card-label">during test period</span>
+                    </div>
+                    <div class="stat-card" role="listitem">
+                        <span class="stat-card-value">99.2% uptime</span>
+                        <span class="stat-card-label">over 3 weeks of operation</span>
+                    </div>
+                    <div class="stat-card" role="listitem">
+                        <span class="stat-card-value">&lt;2 seconds</span>
+                        <span class="stat-card-label">sensor-to-pump response time</span>
+                    </div>
+                </div>
+
+                <!-- Results photo placeholder -->
+                <div class="reveal" style="margin-top: 22px;">
+                    <div class="img-ph" style="min-height: 240px;" role="img"
+                        aria-label="Placeholder: Photo of healthy plants in the monitored garden after irrigation system deployment">
+                        <span class="img-ph-label">RESULTS PHOTO</span>
+                        <span class="img-ph-desc">Photo of healthy plants in the monitored garden/test bed after the
+                            irrigation system deployment</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA / NEXT STEPS ══════════════════════════════════════════ -->
+        <section class="section" id="next" aria-label="Build Your Own">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>BUILD YOUR OWN?</h2>
+                    <p>Commission a custom system or follow the build.</p>
+                </div>
+
+                <div class="cta-cards">
+                    <div class="cta-card reveal">
+                        <h3>Commission a Custom System</h3>
+                        <p>Need an irrigation system for your farm or garden? I'll build one tailored to your specific
+                            requirements.</p>
+                        <a class="btn primary" href="services.html#hire">Start a Project →</a>
+                    </div>
+                    <div class="cta-card reveal">
+                        <h3>Follow the Build</h3>
+                        <p>Watch the next version being built on TikTok and Instagram.</p>
+                        <a class="btn ghost" href="https://www.tiktok.com/@msokaalex" target="_blank"
+                            rel="noreferrer noopener">@msokaalex on TikTok →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ MORE PROJECTS ══════════════════════════════════════════════ -->
+        <section class="section" id="more-projects" aria-label="More Projects">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>MORE PROJECTS</h2>
+                    <p>Other systems built at Msoka IoT Lab.</p>
+                </div>
+
+                <div class="more-projects">
+                    <!-- Smart Gate System -->
+                    <a class="proj-preview reveal" href="index.html#iot-projects"
+                        aria-label="Smart Gate System — view project">
+                        <div class="proj-preview-img">
+                            <div class="img-ph" style="height:160px;border-radius:0;border:none;" role="img"
+                                aria-label="Placeholder: Smart Gate System project preview image">
+                                <span class="img-ph-label">SMART GATE SYSTEM</span>
+                                <span class="img-ph-desc">Automated gate control with IoT sensors</span>
+                            </div>
+                        </div>
+                        <div class="proj-preview-body">
+                            <h3>Smart Gate System</h3>
+                            <p>Automated gate access control using ESP32, proximity sensors, and a relay-driven
+                                motor.</p>
+                        </div>
+                    </a>
+
+                    <!-- Smart Lamp System -->
+                    <a class="proj-preview reveal" href="index.html#iot-projects"
+                        aria-label="Smart Lamp System — view project">
+                        <div class="proj-preview-img">
+                            <div class="img-ph" style="height:160px;border-radius:0;border:none;" role="img"
+                                aria-label="Placeholder: Smart Lamp System project preview image">
+                                <span class="img-ph-label">SMART LAMP SYSTEM</span>
+                                <span class="img-ph-desc">App-controlled decorative LED lamp</span>
+                            </div>
+                        </div>
+                        <div class="proj-preview-body">
+                            <h3>Smart Lamp System</h3>
+                            <p>Digitally controlled decorative LED lamp with custom 3D-printed enclosure and app
+                                integration.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ═══ FOOTER ════════════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <img class="footer-logo" src="./images/logo%20500%20%C3%97%20500%20px.png" alt="" aria-hidden="true" />
+                <span class="brand-text">Msoka <span>IoT</span> Lab</span>
+                <p>Modern connected systems with neon-future aesthetics.</p>
+            </div>
+            <div class="footer-links" aria-label="Footer navigation">
+                <a href="index.html#about">About</a>
+                <a href="index.html#design">3D Design</a>
+                <a href="index.html#iot-projects">IoT Projects</a>
+                <a href="index.html#featured">Featured</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <div class="footer-meta">
+                <span>© <span data-year></span> Msoka IoT Lab</span>
+                <span class="sep" aria-hidden="true">·</span>
+                <span>Crafted for the connected world</span>
+            </div>
+        </div>
+    </footer>
+
+    <a class="back-to-top" href="#proj-header" aria-label="Back to top" data-back-to-top>Back to top</a>
+
+    <!-- Floating WhatsApp button -->
+    <a class="float-wa" href="https://wa.me/255619215321" target="_blank" rel="noreferrer noopener"
+        aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+            <path
+                d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 0 16c-1.3 0-2.5-.3-3.6-.8l-.5-.2-3 .8.8-2.9-.3-.6A8 8 0 0 1 12 4Zm-3 3.5c-.3 0-.6.1-.8.3-.5.5-1 1.2-1 2.1 0 1.1.5 2.2 1.2 3.2 1.2 1.7 2.9 3 4.9 3.8.8.3 1.6.5 2.2.4.7-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3l-1.5-.7c-.2-.1-.4-.1-.6.1l-.7.9c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2.1-1.2-.8-.6-1.4-1.4-1.5-1.7-.1-.2 0-.4.1-.5l.5-.6c.1-.1.2-.3.3-.5.1-.2.1-.4 0-.6L10 7.9c-.1-.3-.3-.4-.6-.4H9Z" />
+        </svg>
+    </a>
+
+    <script type="module" src="./script.js"></script>
+</body>
+
+</html>

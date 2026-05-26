@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Follow the build process at Msoka IoT Lab — project updates, experiments, and lessons learned building IoT systems and 3D hardware in Tanzania." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#070814" />
+    <title>Build Log — Msoka IoT Lab</title>
+
+    <meta property="og:title" content="Build Log — Msoka IoT Lab" />
+    <meta property="og:description" content="Follow the build process at Msoka IoT Lab — project updates, experiments, and lessons learned building IoT systems and 3D hardware in Tanzania." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://msokaiotlab.com/images/logo%20500%20%C3%97%20500%20px.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Build Log — Msoka IoT Lab" />
+    <meta name="twitter:description" content="Follow the build process at Msoka IoT Lab — real builds, real problems, real solutions." />
+    <meta name="twitter:image" content="https://msokaiotlab.com/images/logo%20500%20%C3%97%20500%20px.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" href="./assets/favicon-logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./images/logo%20500%20%C3%97%20500%20px.png" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="canonical" href="https://msokaiotlab.com/blog.html" />
+
+    <style>
+        /* ── Page-specific styles for blog.html ── */
+
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            padding: calc(var(--header-h) + 72px) 0 80px;
+            overflow: hidden;
+            z-index: 1;
+            background:
+                radial-gradient(900px 600px at 10% 0%, rgba(88, 212, 255, 0.18), transparent 55%),
+                radial-gradient(700px 500px at 90% 20%, rgba(168, 85, 247, 0.16), transparent 55%),
+                linear-gradient(180deg, rgba(7, 8, 20, 0.0) 0%, rgba(7, 8, 20, 0.6) 100%);
+        }
+
+        .page-hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(89, 212, 255, 0.22);
+            background: rgba(89, 212, 255, 0.07);
+            color: rgba(89, 212, 255, 0.9);
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .page-hero-kicker::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--neon-a);
+            box-shadow: 0 0 12px rgba(89, 212, 255, 0.6);
+        }
+
+        .page-hero h1 {
+            margin: 0 0 16px;
+            font-family: "Orbitron", system-ui, sans-serif;
+            font-size: clamp(2rem, 4vw + 1rem, 4rem);
+            letter-spacing: 2px;
+            line-height: 1.1;
+            background: linear-gradient(90deg, #fff 30%, var(--neon-a) 60%, var(--neon-b) 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .page-hero-subtitle {
+            font-size: clamp(1.1rem, 1.5vw + 0.8rem, 1.5rem);
+            color: rgba(255, 255, 255, 0.78);
+            font-weight: 600;
+            margin: 0 0 20px;
+        }
+
+        .page-hero-desc {
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.75;
+            max-width: 62ch;
+            margin: 0;
+        }
+
+        .page-hero-grid {
+            position: absolute;
+            inset: -80px -80px;
+            background-image:
+                linear-gradient(rgba(88, 212, 255, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+            background-size: 56px 56px;
+            opacity: 0.5;
+            transform: skewY(-4deg);
+            pointer-events: none;
+        }
+
+        /* Floating WhatsApp button */
+        .float-wa {
+            position: fixed;
+            bottom: 72px;
+            right: 14px;
+            width: 52px;
+            height: 52px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
+            z-index: 60;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .float-wa:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 14px 44px rgba(37, 211, 102, 0.5);
+        }
+
+        .float-wa svg {
+            width: 28px;
+            height: 28px;
+            color: #fff;
+        }
+
+        /* Image placeholder */
+        .img-ph {
+            border-radius: var(--radius-sm);
+            border: 1px dashed rgba(168, 85, 247, 0.28);
+            background: radial-gradient(420px 260px at 30% 20%, rgba(88, 212, 255, 0.1), transparent 62%),
+                radial-gradient(420px 260px at 80% 60%, rgba(168, 85, 247, 0.1), transparent 65%),
+                rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+        }
+
+        .img-ph-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .img-ph-icon {
+            width: 40px;
+            height: 40px;
+            color: rgba(168, 85, 247, 0.55);
+        }
+
+        .img-ph-label {
+            font-family: "Orbitron", system-ui, sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .img-ph-desc {
+            margin: 0;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.35);
+            line-height: 1.5;
+            max-width: 28ch;
+        }
+
+        /* Date / category badge */
+        .build-date {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(89, 212, 255, 0.22);
+            background: rgba(89, 212, 255, 0.07);
+            color: rgba(89, 212, 255, 0.85);
+            font-family: "Orbitron", system-ui, sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        .build-cat {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(168, 85, 247, 0.22);
+            background: rgba(168, 85, 247, 0.07);
+            color: rgba(168, 85, 247, 0.85);
+            font-family: "Orbitron", system-ui, sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        /* Featured build card */
+        .featured-build-card {
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(10px);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            position: relative;
+            transition: border-color 220ms ease, box-shadow 220ms ease;
+        }
+
+        .featured-build-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(700px 400px at 0% 0%, rgba(88, 212, 255, 0.1), transparent 55%),
+                radial-gradient(600px 350px at 100% 100%, rgba(168, 85, 247, 0.09), transparent 55%);
+            pointer-events: none;
+        }
+
+        .featured-build-card:hover {
+            border-color: rgba(89, 212, 255, 0.22);
+            box-shadow: 0 36px 120px rgba(0, 0, 0, 0.48);
+        }
+
+        .featured-build-media {
+            position: relative;
+            min-height: 380px;
+        }
+
+        .featured-build-media .img-ph {
+            position: absolute;
+            inset: 0;
+            border-radius: 0;
+            border: none;
+            min-height: auto;
+        }
+
+        .featured-build-body {
+            padding: 32px 28px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-build-body h3 {
+            margin: 0;
+            font-size: clamp(1.1rem, 1.5vw + 0.7rem, 1.5rem);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .featured-build-body > p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.75;
+            flex: 1;
+        }
+
+        .build-progress {
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .build-progress-title {
+            font-family: "Orbitron", system-ui, sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0 0 10px;
+        }
+
+        .build-progress ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 8px;
+        }
+
+        .build-progress li {
+            color: var(--muted);
+            font-size: 0.92rem;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .build-progress li[data-done="true"] {
+            color: rgba(34, 197, 94, 0.85);
+        }
+
+        .build-progress li[data-active="true"] {
+            color: rgba(89, 212, 255, 0.9);
+        }
+
+        .featured-build-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 980px) {
+            .featured-build-card {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-build-media {
+                min-height: 260px;
+            }
+        }
+
+        /* All builds grid */
+        .builds-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        @media (max-width: 980px) {
+            .builds-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .builds-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .build-card {
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(8px);
+            overflow: hidden;
+            box-shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+        }
+
+        .build-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(420px 240px at 0% 0%, rgba(88, 212, 255, 0.1), transparent 60%),
+                radial-gradient(420px 240px at 100% 20%, rgba(168, 85, 247, 0.08), transparent 60%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 220ms ease;
+        }
+
+        .build-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(88, 212, 255, 0.22);
+            box-shadow: 0 32px 100px rgba(0, 0, 0, 0.42);
+        }
+
+        .build-card:hover::before {
+            opacity: 1;
+        }
+
+        .build-card-media {
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .build-card-media .img-ph {
+            position: absolute;
+            inset: 0;
+            border-radius: 0;
+            border: none;
+            min-height: auto;
+        }
+
+        .build-card-body {
+            padding: 18px 18px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .build-card-body h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.35;
+        }
+
+        .build-card-body > p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.93rem;
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .build-card-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .build-read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(89, 212, 255, 0.85);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 160ms ease, transform 160ms ease;
+        }
+
+        .build-read-more:hover {
+            color: var(--neon-a);
+            transform: translateX(2px);
+        }
+
+        /* Subscribe / social section */
+        .subscribe-card {
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: linear-gradient(135deg, rgba(88, 212, 255, 0.06), rgba(168, 85, 247, 0.06));
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.3);
+            padding: 48px 32px;
+            text-align: center;
+            max-width: 640px;
+            margin-inline: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subscribe-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(500px 300px at 50% 0%, rgba(89, 212, 255, 0.1), transparent 55%);
+            pointer-events: none;
+        }
+
+        .subscribe-card h3 {
+            margin: 0 0 12px;
+            font-family: "Orbitron", system-ui, sans-serif;
+            font-size: clamp(1.2rem, 2vw + 0.8rem, 2rem);
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #fff, var(--neon-a));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subscribe-card > p {
+            margin: 0 0 28px;
+            color: var(--muted);
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subscribe-links {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subscribe-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .subscribe-link.tiktok {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.06));
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: var(--text);
+        }
+
+        .subscribe-link.instagram {
+            background: linear-gradient(135deg, rgba(214, 41, 118, 0.2), rgba(254, 184, 46, 0.15));
+            border: 1px solid rgba(214, 41, 118, 0.28);
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .subscribe-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .subscribe-link svg {
+            width: 22px;
+            height: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+    <div class="hud-cursor" data-cursor>
+        <div class="hud-cursor-inner"></div>
+        <div class="hud-cursor-ornament"></div>
+    </div>
+    <div class="scroll-progress" data-scroll-progress></div>
+    <a class="skip-link" href="#blog-hero">Skip to content</a>
+    <div class="tech-bg" aria-hidden="true">
+        <div class="tech-grid"></div>
+        <div class="tech-circuits"></div>
+        <div class="tech-scan"></div>
+        <div class="tech-orb tech-orb-a"></div>
+        <div class="tech-orb tech-orb-b"></div>
+    </div>
+
+    <header class="site-header" data-header>
+        <nav class="nav container" aria-label="Primary">
+            <a class="brand" href="index.html" aria-label="Msoka IoT Lab home">
+                <img class="brand-logo" src="./images/logo%20500%20%C3%97%20500%20px.png" alt="" aria-hidden="true" />
+                <span class="brand-text">Msoka <span>IoT</span> Lab</span>
+            </a>
+            <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+                aria-controls="nav-menu" data-nav-toggle>
+                <span class="nav-toggle-lines" aria-hidden="true"></span>
+            </button>
+            <div class="nav-menu" id="nav-menu" data-nav-menu>
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.html#about">About</a>
+                <a class="nav-link" href="index.html#iot-projects">Projects</a>
+                <a class="nav-link" href="services.html">Services</a>
+                <a class="nav-link is-active" href="blog.html">Build Log</a>
+                <a class="nav-link" href="index.html#contact">Contact</a>
+                <a class="nav-cta" href="services.html#hire">Hire Me</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ═══════════════════════════════════════════════════════ PAGE HERO -->
+        <section class="page-hero" id="blog-hero" aria-label="Build Log overview">
+            <div class="page-hero-grid" aria-hidden="true"></div>
+            <div class="container">
+                <p class="page-hero-kicker reveal">Project Updates · Lab Experiments · Lessons Learned</p>
+                <h1 class="reveal">BUILD LOG</h1>
+                <p class="page-hero-subtitle reveal">Real builds. Real problems. Real solutions.</p>
+                <p class="page-hero-desc reveal">Follow the process behind Msoka IoT Lab — from first breadboard
+                    prototype to finished deployed system.</p>
+            </div>
+        </section>
+
+        <!-- ═════════════════════════════════════════════════ FEATURED BUILD -->
+        <section class="section" id="featured-build" aria-label="Latest build">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>LATEST BUILD</h2>
+                    <p>The most recent build in progress at Msoka IoT Lab.</p>
+                </div>
+
+                <article class="featured-build-card reveal" aria-label="Smart Gate System — Vehicle Detection Integration">
+                    <div class="featured-build-media" aria-label="Build photo">
+                        <div class="img-ph">
+                            <div class="img-ph-inner">
+                                <svg class="img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" aria-hidden="true">
+                                    <rect x="3" y="3" width="18" height="18" rx="3" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                    <path d="m21 15-5-5L5 21" />
+                                </svg>
+                                <strong class="img-ph-label">SMART GATE PHOTO</strong>
+                                <p class="img-ph-desc">Photo of Smart Gate System build — showing sensors, gate
+                                    mechanism, wiring, or testing in progress</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="featured-build-body">
+                        <div>
+                            <span class="build-date">MAY 2026</span>
+                            <span class="build-cat">COMPUTER VISION</span>
+                        </div>
+                        <h3>Smart Gate System — Vehicle Detection Integration</h3>
+                        <p>The latest challenge at Msoka IoT Lab: building a gate that opens automatically for
+                            authorized vehicles. The system uses an array of IR break-beam sensors combined with simple
+                            pattern-matching logic running on an ESP32 to classify whether an approaching object is a
+                            vehicle or pedestrian.</p>
+
+                        <div class="build-progress" aria-label="Build progress">
+                            <p class="build-progress-title">BUILD PROGRESS</p>
+                            <ul>
+                                <li data-done="true">✓ Hardware design complete</li>
+                                <li data-done="true">✓ Sensor array calibrated</li>
+                                <li data-active="true">⚡ Computer vision logic — in progress</li>
+                                <li>○ Enclosure design — upcoming</li>
+                            </ul>
+                        </div>
+
+                        <div class="tags" aria-label="Technologies used">
+                            <span>ESP32</span>
+                            <span>Computer Vision</span>
+                            <span>C/C++</span>
+                            <span>Relay Control</span>
+                        </div>
+
+                        <div class="featured-build-actions">
+                            <a class="btn primary" href="https://www.tiktok.com/@msokaalex" target="_blank"
+                                rel="noreferrer noopener">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
+                                    <path d="M14 3v10.2a3.7 3.7 0 1 1-3-3.6V6.2A7.7 7.7 0 1 0 16 13V8.5c1.3 1 2.9 1.6 4.6 1.6V7.4c-2 0-3.8-1.3-4.3-3.1H14Z" />
+                                </svg>
+                                Follow on TikTok @msokaalex
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════ ALL BUILDS -->
+        <section class="section" id="all-builds" aria-label="All builds">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>ALL BUILDS</h2>
+                    <p>Every project, experiment, and build log from Msoka IoT Lab — newest first.</p>
+                </div>
+
+                <div class="builds-grid">
+
+                    <!-- Build 1 — Smart Gate -->
+                    <article class="build-card reveal" aria-label="Smart Gate System">
+                        <div class="build-card-media">
+                            <div class="img-ph">
+                                <div class="img-ph-inner">
+                                    <svg class="img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" aria-hidden="true">
+                                        <rect x="3" y="3" width="18" height="18" rx="3" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <path d="m21 15-5-5L5 21" />
+                                    </svg>
+                                    <strong class="img-ph-label">SMART GATE</strong>
+                                    <p class="img-ph-desc">Photo of Smart Gate System sensor array or gate mechanism</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="build-card-body">
+                            <div>
+                                <span class="build-date">MAY 2026</span>
+                                <span class="build-cat">COMPUTER VISION</span>
+                            </div>
+                            <h3>Smart Gate System — Vehicle Detection Integration</h3>
+                            <p>Building a gate that automatically opens for authorized vehicles using IR sensor arrays
+                                and pattern-matching logic on an ESP32. Hardware design complete, computer vision logic
+                                in progress.</p>
+                            <div class="build-card-footer">
+                                <div class="tags">
+                                    <span>ESP32</span>
+                                    <span>C/C++</span>
+                                    <span>Relay</span>
+                                </div>
+                                <a class="build-read-more" href="#" aria-label="Read more about Smart Gate System">
+                                    Read more →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Build 2 — Smart Lamp -->
+                    <article class="build-card reveal" aria-label="Smart Desk Lamp">
+                        <div class="build-card-media">
+                            <div class="img-ph">
+                                <div class="img-ph-inner">
+                                    <svg class="img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" aria-hidden="true">
+                                        <rect x="3" y="3" width="18" height="18" rx="3" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <path d="m21 15-5-5L5 21" />
+                                    </svg>
+                                    <strong class="img-ph-label">SMART LAMP</strong>
+                                    <p class="img-ph-desc">Photo of Smart Desk Lamp with custom 3D enclosure and LED
+                                        illumination</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="build-card-body">
+                            <div>
+                                <span class="build-date">APR 2026</span>
+                                <span class="build-cat">SMART HOME</span>
+                            </div>
+                            <h3>Smart Desk Lamp — App-Controlled RGB Lighting</h3>
+                            <p>A fully app-controlled RGB desk lamp with a custom 3D-printed enclosure. Controllable
+                                via smartphone with scene presets, brightness control, and color selection. Built on
+                                ESP32 with a clean web interface.</p>
+                            <div class="build-card-footer">
+                                <div class="tags">
+                                    <span>ESP32</span>
+                                    <span>3D Print</span>
+                                    <span>RGB LED</span>
+                                </div>
+                                <a class="build-read-more" href="#" aria-label="Read more about Smart Desk Lamp">
+                                    Read more →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Build 3 — Smart Irrigation v2 -->
+                    <article class="build-card reveal" aria-label="Smart Irrigation System v2">
+                        <div class="build-card-media">
+                            <div class="img-ph">
+                                <div class="img-ph-inner">
+                                    <svg class="img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" aria-hidden="true">
+                                        <rect x="3" y="3" width="18" height="18" rx="3" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <path d="m21 15-5-5L5 21" />
+                                    </svg>
+                                    <strong class="img-ph-label">IRRIGATION SYSTEM</strong>
+                                    <p class="img-ph-desc">Photo of Smart Irrigation System v2 with sensors and pump
+                                        relay setup</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="build-card-body">
+                            <div>
+                                <span class="build-date">MAR 2026</span>
+                                <span class="build-cat">AGRICULTURE</span>
+                            </div>
+                            <h3>Smart Irrigation System v2 — Dashboard &amp; Alerts</h3>
+                            <p>The second version of the Smart Irrigation System adds a live web dashboard for
+                                soil moisture monitoring and WhatsApp alerts when moisture drops below threshold.
+                                Deployed on Supabase and Vercel.</p>
+                            <div class="build-card-footer">
+                                <div class="tags">
+                                    <span>Supabase</span>
+                                    <span>ESP32</span>
+                                    <span>Vercel</span>
+                                </div>
+                                <a class="build-read-more" href="#"
+                                    aria-label="Read more about Smart Irrigation System v2">
+                                    Read more →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Build 4 — Smart Irrigation v1 -->
+                    <article class="build-card reveal" aria-label="Smart Irrigation v1 — First Working Prototype">
+                        <div class="build-card-media">
+                            <div class="img-ph">
+                                <div class="img-ph-inner">
+                                    <svg class="img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" aria-hidden="true">
+                                        <rect x="3" y="3" width="18" height="18" rx="3" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <path d="m21 15-5-5L5 21" />
+                                    </svg>
+                                    <strong class="img-ph-label">IRRIGATION v1</strong>
+                                    <p class="img-ph-desc">Photo of first working Smart Irrigation prototype on
+                                        breadboard or in simple enclosure</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="build-card-body">
+                            <div>
+                                <span class="build-date">FEB 2026</span>
+                                <span class="build-cat">IOT SYSTEMS</span>
+                            </div>
+                            <h3>Smart Irrigation v1 — First Working Prototype</h3>
+                            <p>The first fully working version of the Smart Irrigation System — soil moisture sensor
+                                readings reliably triggering the pump relay. Key lesson: capacitive sensors need 3.3V
+                                not 5V to avoid false readings.</p>
+                            <div class="build-card-footer">
+                                <div class="tags">
+                                    <span>Arduino</span>
+                                    <span>Sensor</span>
+                                    <span>Relay</span>
+                                </div>
+                                <a class="build-read-more" href="#"
+                                    aria-label="Read more about Smart Irrigation v1">
+                                    Read more →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Build 5 — Box Pen Holder -->
+                    <article class="build-card reveal" aria-label="Box Pen Holder — First 3D Design">
+                        <div class="build-card-media">
+                            <div class="img-ph">
+                                <div class="img-ph-inner">
+                                    <svg class="img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" aria-hidden="true">
+                                        <rect x="3" y="3" width="18" height="18" rx="3" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <path d="m21 15-5-5L5 21" />
+                                    </svg>
+                                    <strong class="img-ph-label">BOX PEN HOLDER</strong>
+                                    <p class="img-ph-desc">Photo of the 3D printed box/pen holder showing finished
+                                        design</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="build-card-body">
+                            <div>
+                                <span class="build-date">JAN 2026</span>
+                                <span class="build-cat">3D DESIGN</span>
+                            </div>
+                            <h3>Box Pen Holder — First 3D Design at the Lab</h3>
+                            <p>The very first 3D design project at Msoka IoT Lab. A functional desk organizer designed
+                                in CAD from scratch. Simple geometry, clean lines — focused on learning the
+                                design-to-print workflow.</p>
+                            <div class="build-card-footer">
+                                <div class="tags">
+                                    <span>CAD</span>
+                                    <span>FDM Print</span>
+                                    <span>PLA</span>
+                                </div>
+                                <a class="build-read-more" href="#"
+                                    aria-label="Read more about Box Pen Holder 3D design">
+                                    Read more →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Build 6 — Setting Up the Lab -->
+                    <article class="build-card reveal" aria-label="Setting Up the Lab">
+                        <div class="build-card-media">
+                            <div class="img-ph">
+                                <div class="img-ph-inner">
+                                    <svg class="img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" aria-hidden="true">
+                                        <rect x="3" y="3" width="18" height="18" rx="3" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <path d="m21 15-5-5L5 21" />
+                                    </svg>
+                                    <strong class="img-ph-label">LAB SETUP</strong>
+                                    <p class="img-ph-desc">Photo of first project setup — breadboard, first
+                                        microcontroller, components on desk</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="build-card-body">
+                            <div>
+                                <span class="build-date">DEC 2025</span>
+                                <span class="build-cat">GETTING STARTED</span>
+                            </div>
+                            <h3>Setting Up the Lab</h3>
+                            <p>First breadboard, first sensor, first LED that blinked on command. Every IoT developer
+                                has that first moment when software meets hardware. This is where Msoka IoT Lab
+                                began.</p>
+                            <div class="build-card-footer">
+                                <div class="tags">
+                                    <span>Arduino</span>
+                                    <span>Breadboard</span>
+                                    <span>First Build</span>
+                                </div>
+                                <a class="build-read-more" href="#"
+                                    aria-label="Read more about Setting Up the Lab">
+                                    Read more →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════ SUBSCRIBE -->
+        <section class="section" id="subscribe" aria-label="Stay updated">
+            <div class="container">
+                <div class="subscribe-card reveal">
+                    <h3>STAY UPDATED</h3>
+                    <p>Follow the lab on TikTok and Instagram for build videos, demos, and experiments.</p>
+                    <div class="subscribe-links">
+                        <a class="subscribe-link tiktok" href="https://www.tiktok.com/@msokaalex" target="_blank"
+                            rel="noreferrer noopener" aria-label="Follow on TikTok">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M14 3v10.2a3.7 3.7 0 1 1-3-3.6V6.2A7.7 7.7 0 1 0 16 13V8.5c1.3 1 2.9 1.6 4.6 1.6V7.4c-2 0-3.8-1.3-4.3-3.1H14Z" />
+                            </svg>
+                            TikTok @msokaalex
+                        </a>
+                        <a class="subscribe-link instagram" href="https://www.instagram.com/alexcosmasmsoka"
+                            target="_blank" rel="noreferrer noopener" aria-label="Follow on Instagram">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.5-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z" />
+                            </svg>
+                            Instagram @alexcosmasmsoka
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <img class="footer-logo" src="./images/logo%20500%20%C3%97%20500%20px.png" alt="" aria-hidden="true" />
+                <span class="brand-text">Msoka <span>IoT</span> Lab</span>
+                <p>Modern connected systems with neon-future aesthetics.</p>
+            </div>
+            <div class="footer-links" aria-label="Footer navigation">
+                <a href="index.html#about">About</a>
+                <a href="index.html#iot-projects">Projects</a>
+                <a href="services.html">Services</a>
+                <a href="blog.html">Build Log</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <div class="footer-meta">
+                <span>© <span data-year></span> Msoka IoT Lab</span>
+                <span class="sep" aria-hidden="true">·</span>
+                <span>Crafted for the connected world</span>
+            </div>
+        </div>
+    </footer>
+
+    <a class="back-to-top" href="#blog-hero" aria-label="Back to top" data-back-to-top>Back to top</a>
+
+    <a class="float-wa" href="https://wa.me/255619215321" target="_blank" rel="noreferrer noopener"
+        aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+                d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 0 16c-1.3 0-2.5-.3-3.6-.8l-.5-.2-3 .8.8-2.9-.3-.6A8 8 0 0 1 12 4Zm-3 3.5c-.3 0-.6.1-.8.3-.5.5-1 1.2-1 2.1 0 1.1.5 2.2 1.2 3.2 1.2 1.7 2.9 3 4.9 3.8.8.3 1.6.5 2.2.4.7-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3l-1.5-.7c-.2-.1-.4-.1-.6.1l-.7.9c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2.1-1.2-.8-.6-1.4-1.4-1.5-1.7-.1-.2 0-.4.1-.5l.5-.6c.1-.1.2-.3.3-.5.1-.2.1-.4 0-.6L10 7.9c-.1-.3-.3-.4-.6-.4H9Z" />
+        </svg>
+    </a>
+
+    <script type="module" src="./script.js"></script>
+</body>
+
+</html>
